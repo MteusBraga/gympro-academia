@@ -40,14 +40,6 @@ app.get('/planos', async (req, res)=>{
     res.send(result)
 })
 
-app.get('/cargos', async (req, res)=>{
-    const result = await queryDB({
-        query:'SELECT DISTINCT cargo FROM funcionario'
-    })
-
-    res.send(result)
-})
-
 app.post('/getLogin', async (req, res)=>{
     const { email, senha } = req.body
 
