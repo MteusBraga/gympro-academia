@@ -3,7 +3,7 @@ import { useRouter } from "next/router"
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-export default function CadastroClientes (){
+export default function CadastroFuncionario (){
     const [planos, setPlanos] = useState([])
     const [selectedValue, setSelectedValue] = useState('1')
     const form = useForm()
@@ -15,7 +15,7 @@ export default function CadastroClientes (){
     return(
         <main className=" h-screen flexdps items-center justify-center">
             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-lg bg-white p-5 rounded-lg">
-                <h2 className="mt-5 mb-2 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">CADASTRO CLIENTE</h2>
+                <h2 className="mt-5 mb-2 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">CADASTRO FUNCIONÁRIO</h2>
                 <form className="flex flex-col" action="submit" onSubmit={handleSubmit(async (data)=>{
                     console.log(data)
                     console.log('valor selecionado '+ selectedValue)
@@ -27,7 +27,10 @@ export default function CadastroClientes (){
                         telefone:data.telefone,
                         email: data.email,
                         senha: data.senha,
-                        plano_idplano: selectedValue
+                        cargo: data.cargo,
+                        salario: salario.salario,
+                        dataAdmissao: data.admissao,
+                        dataPagamento: data.pagamento
                     })
                     reset();
                 })}>
@@ -63,6 +66,14 @@ export default function CadastroClientes (){
                         <div className="sm:col-span-2">
                             <label className="block text-sm font-medium leading-6 text-gray-900 mb-1">Salário</label>
                             <input className="block w-full rounded-md border-0 py-1 pl-2 pr-2 text-gray-900 ring-1 ring-inset ring-gray-300 sm:text-sm sm:leading-6" type="text" required {...register("salario")}/>
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium leading-6 text-gray-900 mb-1">Data de admissão</label>
+                            <input className="block w-full rounded-md border-0 py-1 pl-2 pr-2 text-gray-900 ring-1 ring-inset ring-gray-300 sm:text-sm sm:leading-6" placeholder="Select date" type="date" required {...register("admissao")}/>
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium leading-6 text-gray-900 mb-1">Data de pagamento</label>
+                            <input className="block w-full rounded-md border-0 py-1 pl-2 pr-2 text-gray-900 ring-1 ring-inset ring-gray-300 sm:text-sm sm:leading-6" placeholder="Select date" type="date" required {...register("pagamento")}/>
                         </div>
                         <div className="sm:col-span-2">
                             <label className="block text-sm font-medium leading-6 text-gray-900 mb-1">Cargo</label>
