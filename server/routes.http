@@ -13,7 +13,7 @@ Content-Type: application/json
     "telefone": "81991342744",
     "email": "mateus@gmail.com",
     "senha": "123456",
-    "plano_idplano": 1
+    "plano_idplano": 101
 }
 
 ###
@@ -21,7 +21,7 @@ POST http://localhost:3333/getLogin
 Content-Type:  application/json
 
 {
-    "email": "diego@gmail.com",
+    "email": "mateus@gmail.com",
     "senha": "123456"
 }
 ###
