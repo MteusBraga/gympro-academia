@@ -65,7 +65,7 @@ class Funcionario extends Usuario{
                 ]
             })
             queryDB({
-                query: "insert into funcionario (cargo, salario, dataAdmissao, dataPagamento, pessoa_idpessoa) values (?, ?, ?, ?, ?)",
+                query: "INSERT INTO funcionario (cargo, salario, dataAdmissao, dataPagamento, pessoa_idpessoa) VALUES (?, ?, ?, ?, ?)",
                 values: [
                     funcionario.cargo,
                     funcionario.salario,

@@ -4,13 +4,27 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 export default function CadastroFuncionario (){
-    const [planos, setPlanos] = useState([])
+    const [cargos, setCargos] = useState([])
     const [selectedValue, setSelectedValue] = useState('1')
     const form = useForm()
     const { register, handleSubmit, setValue, getValues, reset } = useForm();
 
+    useEffect(()=>{
+        const getCargos = async () => {
+            try{
+                const { data } = await axios.get('http://localhost:3333/cargos');
+                setCargos(data)
+            }catch(e){
+                console.log(e)
+            }
+          };
+    
+          getCargos();
+    }, [])
+
     const handleSelectChange = (event) => {
         setSelectedValue(event.target.value); // Atualiza o estado com o valor selecionado
+        console.log(setSelectedValue(event.target.value))
     };
     return(
         <main className=" h-screen flexdps items-center justify-center">
@@ -24,11 +38,11 @@ export default function CadastroFuncionario (){
                         sexo: data.sexo,
                         nascimento: data.nascimento,
                         cpf: data.cpf,
-                        telefone:data.telefone,
+                        telefone: data.telefone,
                         email: data.email,
                         senha: data.senha,
-                        cargo: data.cargo,
-                        salario: salario.salario,
+                        cargo: selectedValue,
+                        salario: data.salario,
                         dataAdmissao: data.admissao,
                         dataPagamento: data.pagamento
                     })
@@ -83,13 +97,14 @@ export default function CadastroFuncionario (){
                         <div className="sm:col-span-2">
                             <label className="block text-sm font-medium leading-6 text-gray-900 mb-1">Cargo</label>
                             <select id='options' value={selectedValue} onChange={handleSelectChange} className="block w-full rounded-md border-0 py-2 pl-2 pr-2 text-gray-900 ring-1 ring-inset ring-white-300 sm:text-sm sm:leading-6">
-                                {
-                                    planos.map((plano)=>{
-                                        return(
-                                            <option value={plano.idplano}>{plano.tipo}, {plano.pacote}, R$ {plano.valor}</option>
-                                        )
-                                    })
-                                }
+                            {cargos.map((cargo) => {
+                                const capitalizedCargo = cargo.cargo.charAt(0).toUpperCase() + cargo.cargo.slice(1);
+                                return (
+                                <option value={cargo.id} key={cargo.id}>
+                                    {capitalizedCargo}
+                                </option>
+                                    );
+                                })}
                             </select>
                         </div>
 
