@@ -65,7 +65,12 @@ export default function CadastroFuncionario (){
                         </div>
                         <div className="sm:col-span-2">
                             <label className="block text-sm font-medium leading-6 text-gray-900 mb-1">Salário</label>
-                            <input className="block w-full rounded-md border-0 py-1 pl-2 pr-2 text-gray-900 ring-1 ring-inset ring-gray-300 sm:text-sm sm:leading-6" type="text" required {...register("salario")}/>
+                            <div class="relative mt-2 rounded-md shadow-sm">
+                                <div class="pointer-events-none absolute inset-y-4 left-0 flex items-center pl-3">
+                                    <span class="text-gray-500 sm:text-sm">R$</span>
+                                </div>
+                            </div>
+                            <input className="block w-full rounded-md border-0 py-1 pl-9 pr-2 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="0.00" type="text" required {...register("salario")}/>
                         </div>
                         <div>
                             <label className="block text-sm font-medium leading-6 text-gray-900 mb-1">Data de admissão</label>
