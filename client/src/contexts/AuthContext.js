@@ -1,32 +1,40 @@
-import { createContext, useState } from "react";
-import { setCookie } from "nookies";
+import { createContext, useEffect, useState } from "react";
+import { parseCookies, setCookie } from "nookies";
 import Router from "next/router";
 
 import axios from 'axios'
 export const AuthContext = createContext({})
 
 export function AuthProvider({ children }){
-    const isAuthenticated = false;
     const [user, setUser] = useState(null)
 
-    async function signIn({ email, senha }){
+    const isAuthenticated = !!user;
 
-        const result = await axios.post('http://localhost:3333/getLogin', {
-            email: email,
-            senha: senha
-        })
+    useEffect(()=>{
+        const { 'gympro-token': token } = parseCookies()
+        if(token){
+            
+        }
+    },[])
 
-        setCookie(undefined, 'gympro-token', result[0].idCliente, {
-            maxAge: 60 * 60 * 1 //1 hora
-        })
+    // async function signIn({ email, senha }){
 
-        setUser(result[0])
+    //     const result = await axios.post('http://localhost:3333/getLogin', {
+    //         email: email,
+    //         senha: senha
+    //     })
 
-        Router.push('/dashboard')
-    }
+    //     setCookie(undefined, 'gympro-token', result[0].idCliente, {
+    //         maxAge: 60 * 60 * 1 //1 hora
+    //     })
+
+    //     setUser(result[0])
+
+    //     Router.push('/dashboard')
+    // }
 
     return (
-        <AuthContext.Provider value={{ signIn, isAuthenticated, user }}>
+        <AuthContext.Provider value={{ isAuthenticated, user }}>
             {children}
         </AuthContext.Provider>
     )

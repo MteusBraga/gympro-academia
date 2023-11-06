@@ -24,3 +24,13 @@ Content-Type:  application/json
     "email": "diego@gmail.com",
     "senha": "123456"
 }
+###
+GET http://localhost:3333/planos 
+
+###
+POST http://localhost:3333/recuperarUsuario
+Content-Type: application/json
+
+{
+    "token": "28470a00-9235-44fb-9cb2-8e43d0fef8e4"
+}
