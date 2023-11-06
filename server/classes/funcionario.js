@@ -1,5 +1,8 @@
+const { randomUUID } = require('crypto')
 const queryDB = require('../dbconnetion')
-class Funcionario {
+const Usuario = require('./usuario')
+
+class Funcionario extends Usuario{
     async setFuncionario(email, senha){
         //result vem como array pq é um select
         const result = await queryDB({
@@ -41,6 +44,38 @@ class Funcionario {
         //gambiarra de javascript
         const { dados } = this 
         return dados
+    }
+
+
+    create(funcionario){
+        const pessoaId = randomUUID()
+        
+        async function inserir(){
+            await queryDB({
+                query: 'insert into pessoa (idpessoa, nome, sexo, nascimento, cpf, telefone, email, senha) values (?, ?, ?, ?, ?, ?, ?, ?)',
+                values: [
+                    pessoaId, 
+                    funcionario.nome, 
+                    funcionario.sexo, 
+                    funcionario.nascimento, 
+                    funcionario.cpf, 
+                    funcionario.telefone, 
+                    funcionario.email, 
+                    funcionario.senha
+                ]
+            })
+            queryDB({
+                query: "insert into funcionario (cargo, salario, dataAdmissao, dataPagamento, pessoa_idpessoa) values (?, ?, ?, ?, ?)",
+                values: [
+                    funcionario.cargo,
+                    funcionario.salario,
+                    funcionario.dataAdmissao,
+                    funcionario.dataPagamento,
+                    pessoaId
+                ]
+            })
+        }
+        inserir()
     }
 }
 

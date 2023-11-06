@@ -8,6 +8,7 @@ const queryDB = require('./dbconnetion');
 const app = express();
 
 const cliente = new Cliente()
+const funcionario = new Funcionario()
 const usuario = new Usuario()
 const autenticacao = new Autenticacao()
 
@@ -20,6 +21,13 @@ app.use(express.json());
 app.post('/cadastroClientes',async (req, res)=>{
     console.log(req.body)
     cliente.create(req.body)
+
+    res.status(204).send()
+})
+
+app.post('/cadastroFuncionarios',async (req, res)=>{
+    console.log(req.body)
+    funcionario.create(req.body)
 
     res.status(204).send()
 })
