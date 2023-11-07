@@ -53,3 +53,13 @@ Content-Type: application/json
     "dataAdmissao": "2020-08-18",
     "dataPagamento": "2020-08-18"
 }
+
+###
+
+POST http://localhost:3333/listarDataCliente
+Content-Type: application/json
+
+{
+    "dataInit": "2020-01-01",
+    "dataFim": "2023-01-01"
+}
