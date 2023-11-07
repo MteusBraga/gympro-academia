@@ -4,23 +4,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 export default function CadastroFuncionario (){
-    const [cargos, setCargos] = useState([])
     const [selectedValue, setSelectedValue] = useState('1')
     const form = useForm()
     const { register, handleSubmit, setValue, getValues, reset } = useForm();
-
-    useEffect(()=>{
-        const getCargos = async () => {
-            try{
-                const { data } = await axios.get('http://localhost:3333/cargos');
-                setCargos(data)
-            }catch(e){
-                console.log(e)
-            }
-          };
-    
-          getCargos();
-    }, [])
 
     const handleSelectChange = (event) => {
         setSelectedValue(event.target.value); // Atualiza o estado com o valor selecionado
@@ -35,7 +21,7 @@ export default function CadastroFuncionario (){
                     console.log('valor selecionado '+ selectedValue)
                     await axios.post('http://localhost:3333/cadastroFuncionarios', {
                         nome: data.nome,
-                        sexo: data.sexo,
+                        sexo: getValues("sexo"),
                         nascimento: data.nascimento,
                         cpf: data.cpf,
                         telefone: data.telefone,
@@ -55,7 +41,10 @@ export default function CadastroFuncionario (){
                         </div>
                         <div>
                             <label className="block text-sm font-medium leading-6 text-gray-900 mb-1">Sexo</label>
-                            <input className="block w-full rounded-md border-0 py-1 pl-2 pr-2 text-gray-900 ring-1 ring-inset ring-gray-300 sm:text-sm sm:leading-6" type="text" required {...register("sexo")}/>
+                            <input className="w-3.5 h-4" type="radio" value="m"required {...register("sexo")} checked/>
+                            <label for="default-radio-1" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-800">Homem</label>
+                            <input className="w-3.5 h-4 ml-2" type="radio" value="f" required {...register("sexo")}/>
+                            <label for="default-radio-1" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-800">Mulher</label>
                         </div>
                         <div>
                             <label className="block text-sm font-medium leading-6 text-gray-900 mb-1">Data de nascimento</label>
@@ -97,14 +86,10 @@ export default function CadastroFuncionario (){
                         <div className="sm:col-span-2">
                             <label className="block text-sm font-medium leading-6 text-gray-900 mb-1">Cargo</label>
                             <select id='options' value={selectedValue} onChange={handleSelectChange} className="block w-full rounded-md border-0 py-2 pl-2 pr-2 text-gray-900 ring-1 ring-inset ring-white-300 sm:text-sm sm:leading-6">
-                            {cargos.map((cargo) => {
-                                const capitalizedCargo = cargo.cargo.charAt(0).toUpperCase() + cargo.cargo.slice(1);
-                                return (
-                                <option value={cargo.id} key={cargo.id}>
-                                    {capitalizedCargo}
-                                </option>
-                                    );
-                                })}
+                                <option>Atendente</option>
+                                <option>Instrutor</option>
+                                <option>Gerente</option>
+                                <option>Zelador</option>
                             </select>
                         </div>
 
