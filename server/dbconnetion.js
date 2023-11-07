@@ -4,7 +4,7 @@ const queryDB = async (data) => {
     const db = await mysql.createConnection({
         host: 'localhost',
         user: 'root',
-        password: '1234',
+        password: 'root',
         database: 'gympro'
     })
     db.connect()
