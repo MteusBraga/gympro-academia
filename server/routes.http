@@ -63,3 +63,6 @@ Content-Type: application/json
     "dataInit": "2020-01-01",
     "dataFim": "2023-01-01"
 }
+
+###
+GET http://localhost:3333/financeiro 

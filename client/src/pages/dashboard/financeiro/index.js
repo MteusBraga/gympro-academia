@@ -21,19 +21,21 @@ export default function Financeiro(){
             <h1>FATURAMENTO LIQUIDO: R${ dados.TotalLiquido} </h1>
             <h1>TOTAL CLIENTES: {dados.QuantidadeTotalClientes} </h1>
             <table>
+                <thead>
                 <tr>
                     <th>Nome do plano</th>
                     <th>Quantidade Associados</th>
                 </tr>
-                {dados.total_planos.map( items =>{
-                    return(
-                        <tr>
-                            <td>{items.NomePlano}</td>
-                            <td>{items.QuantidadeAssociacoes}</td>
-                        </tr>
-                    )
-                })}
-        </table>
+                </thead>
+                <tbody>
+                {dados.total_planos.map(items => (
+                    <tr key={items.NomePlano}>
+                        <td>{items.NomePlano}</td>
+                        <td>{items.QuantidadeAssociacoes}</td>
+                    </tr>
+                ))}
+                </tbody>
+            </table>
         </main>
     )
 }

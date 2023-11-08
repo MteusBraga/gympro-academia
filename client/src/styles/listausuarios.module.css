@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap');
+
+/*:root{
+    --vermelho:#400500;
+    --branco: #FFF;
+    --bege: #CEF2F2;
+    --preto: #000;
+    --vermelho-claro: #F2220F;
+    --amarelo: #FFE500;
+
+}*/
+
+.container{
+    display: flex;
+    align-items: center;
+}
+
+.parteGerente{
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    
+    width: 400px;  
+    height: 1024px; 
+    flex-shrink: 0; 
+    background-color: var(--branco);
+}
+
+.parteGerente p{
+    color: var(--vermelho-claro);
+    font-family: Outfit;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal; 
+}
+
+.parteGerente h1{
+    color: var(--preto);
+    font-family: Outfit;
+    font-size: 33px;
+    font-style: normal;
+    font-weight: 700;
+    margin-top: 37px;
+    line-height: normal; 
+}
+
+.icon{
+    width: 200px;
+    height: 200px;  
+    margin-top: 57px;
+}
+    
+.divgerente{
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    margin-top: 80px;
+    gap: 20px;
+}
+
+.divgerente p{
+    color: var(--vermelho);
+    font-size: 24px;
+}
+
+.divgerente button{
+    background-color: var(--vermelho-claro);
+    color: var(--branco);
+    border-radius: 54px;
+    width: 246px;
+    height: 70px;
+    color: var(--branco);
+    font-family: Outfit;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 700;
+
+}
+
+.divsair{
+    margin-top:99px;
+    display:flex;
+    flex-direction:row;
+    align-items: center;
+    gap:10px;
+}
+
+
+.parteLista{
+    display: flex;
+    flex-direction:column;
+    align-items: center;  
+    height: 1024px; 
+    width: auto;
+    flex-shrink: 0; 
+    background-color: #E3E3E3;
+    box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.199);
+}
+
+.tabela{
+    border-collapse: collapse;
+    position: relative;
+    box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.199);
+    border: solid #ccc 1px;
+    -webkit-border-radius: 25px;
+       -moz-border-radius: 25px;
+            border-radius: 25px;
+}
+
+.tabelaCabecalho{
+    background-color: var(--vermelho-padrao);
+}
+
+.linha:nth-child(even){
+    background-color: rgb(255, 154, 154);
+}
+
+.linha:nth-child(odd){
+    background-color: rgb(196, 192, 192);
+}
+
+.cabecalho{
+    text-align: left;
+    color: white;
+    padding: 5px 10px;
+    position: sticky;
+    top: 0;
+    background-color: var(--vermelho-padrao);
+}
+
+.dados{
+    padding: 0px 10px 0px 10px;
+    color: rgb(63, 63, 63);
+}
+
+.dadosEdit{
+    padding: 0px 10px 0px 10px;
+    color: rgb(63, 63, 63);
+    display: flex;
+    flex: auto;
+}
+
+.paraTabela{
+    overflow: auto;
+    height: 500px;
+    box-sizing: border-box;
+}

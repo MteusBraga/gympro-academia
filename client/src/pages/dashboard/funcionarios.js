@@ -32,25 +32,33 @@ export default function Funcionario() {
                     </tr>
                 </thead>
                 <tbody>
-                    {funcionario.map(items => {
+                    {funcionario.map((items) => {
+                    // Função para formatar a data
+                    const formatarData = (data) => {
+                    const dataObj = new Date(data);
+                    const dia = dataObj.getDate().toString().padStart(2, '0');
+                    const mes = (dataObj.getMonth() + 1).toString().padStart(2, '0');
+                    const ano = dataObj.getFullYear();
+                    return `${dia}/${mes}/${ano}`;
+                    };
                         return (
-                            <tr>
-                                <td>{items.nome}</td>
-                                <td>{items.cargo}</td>
-                                <td>{items.salario}</td>
-                                <td>{items.sexo}</td>
-                                <td>{items.nascimento}</td>
-                                <td>{items.cpf}</td>
-                                <td>{items.email}</td>
-                                <td>{items.telefone}</td>
-                                <td>{items.dataAdmissao}</td>
-                                <td>{items.dataPagamento}</td>
-                                <td className="flex gap-3">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-pencil"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" /><path d="m15 5 4 4" /></svg>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-trash-2"><path d="M3 6h18" /><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" /><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" /><line x1="10" x2="10" y1="11" y2="17" /><line x1="14" x2="14" y1="11" y2="17" /></svg>
-                                </td>
-                            </tr>
-                        )
+                        <tr key={items.id}> {/* Lembre-se de adicionar uma chave única para cada linha */}
+                            <td>{items.nome}</td>
+                            <td>{items.cargo}</td>
+                            <td>{items.salario}</td>
+                            <td>{items.sexo}</td>
+                            <td>{formatarData(items.nascimento)}</td>
+                            <td>{items.cpf}</td>
+                            <td>{items.email}</td>
+                            <td>{items.telefone}</td>
+                            <td>{formatarData(items.dataAdmissao)}</td>
+                            <td>{formatarData(items.dataPagamento).slice(0, 5)}</td>
+                            <td className="flex gap-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-pencil"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" /><path d="m15 5 4 4" /></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-trash-2"><path d="M3 6h18" /><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" /><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" /><line x1="10" x2="10" y1="11" y2="17" /><line x1="14" x2="14" y1="11" y2="17" /></svg>
+                            </td>
+                        </tr>
+                    )
                     })}
                 </tbody>
             </table>

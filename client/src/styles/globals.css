@@ -17,7 +17,23 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background-color: rgb(227, 227, 227)
-  ;
+  background-image: linear-gradient(135deg, rgb(227, 227, 227), rgb(160, 160, 160));
+} 
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
 }
+
+:root{
+  --vermelho:#400500;
+  --branco: #FFF;
+  --bege: #CEF2F2;
+  --preto: #000;
+  --vermelho-claro: #F2220F;
+  --amarelo: #FFE500;
+  --vermelho-padrao: #fd4a4a;
+}
+
