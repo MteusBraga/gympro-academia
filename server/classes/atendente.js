@@ -1,4 +1,6 @@
 const Funcionario = require('./funcionario')
+const queryDB = require('../dbconnetion')
+const { randomUUID } = require('crypto')
 
 class Atendente extends Funcionario{
     listarClientes(){
@@ -17,7 +19,7 @@ class Atendente extends Funcionario{
 
     }
 
-    createCliente(cliente){
+    async createCliente(cliente){
         const pessoaId = randomUUID()
         
         async function inserir(){
@@ -45,3 +47,6 @@ class Atendente extends Funcionario{
         inserir()
     }
 }
+
+
+module.exports = Atendente

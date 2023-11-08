@@ -42,9 +42,9 @@ export default function CadastroFuncionario (){
                         <div>
                             <label className="block text-sm font-medium leading-6 text-gray-900 mb-1">Sexo</label>
                             <input className="w-3.5 h-4" type="radio" value="m"required {...register("sexo")} checked/>
-                            <label for="default-radio-1" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-800">Homem</label>
+                            <label for="default-radio-1" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-800">Homem</label>
                             <input className="w-3.5 h-4 ml-2" type="radio" value="f" required {...register("sexo")}/>
-                            <label for="default-radio-1" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-800">Mulher</label>
+                            <label for="default-radio-1" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-800">Mulher</label>
                         </div>
                         <div>
                             <label className="block text-sm font-medium leading-6 text-gray-900 mb-1">Data de nascimento</label>
@@ -68,9 +68,9 @@ export default function CadastroFuncionario (){
                         </div>
                         <div className="sm:col-span-2">
                             <label className="block text-sm font-medium leading-6 text-gray-900 mb-1">Salário</label>
-                            <div class="relative mt-2 rounded-md shadow-sm">
-                                <div class="pointer-events-none absolute inset-y-4 left-0 flex items-center pl-3">
-                                    <span class="text-gray-500 sm:text-sm">R$</span>
+                            <div className="relative mt-2 rounded-md shadow-sm">
+                                <div className="pointer-events-none absolute inset-y-4 left-0 flex items-center pl-3">
+                                    <span className="text-gray-500 sm:text-sm">R$</span>
                                 </div>
                             </div>
                             <input className="block w-full rounded-md border-0 py-1 pl-9 pr-2 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="0.00" type="text" required {...register("salario")}/>

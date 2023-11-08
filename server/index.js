@@ -1,5 +1,7 @@
 const Cliente = require('./classes/cliente');
 const Funcionario = require('./classes/funcionario')
+const Atendente = require('./classes/atendente')
+const Gerente = require('./classes/gerente')
 const Usuario = require('./classes/usuario');
 const Autenticacao = require('./classes/autenticacao')
 const express = require('express');
@@ -9,8 +11,10 @@ const app = express();
 
 const cliente = new Cliente()
 const funcionario = new Funcionario()
+const atendente = new Atendente()
 const usuario = new Usuario()
 const autenticacao = new Autenticacao()
+const gerente = new Gerente()
 
 
 app.use(cors());
@@ -20,14 +24,15 @@ app.use(express.json());
 
 app.post('/cadastroClientes',async (req, res)=>{
     console.log(req.body)
-    cliente.create(req.body)
+    atendente.createCliente(req.body)
 
     res.status(204).send()
 })
 
 app.post('/cadastroFuncionarios',async (req, res)=>{
+    
     console.log(req.body)
-    funcionario.create(req.body)
+    gerente.createFuncionario(req.body)
 
     res.status(204).send()
 })
@@ -132,6 +137,10 @@ app.get('/financeiro', async (req, res)=>{
         JOIN pessoa p ON c.pessoa_idpessoa = p.idpessoa;    
         `
     })
+
+    // Promise.all([
+        
+    // ])
 
     const result_financeiro = {...faturamento_vista[0], ...faturamento_parcelado[0], ...faturamento_liquido[0], total_planos:total_planos, ...qnt_cliente[0], ...qnt_cliente_g[0]}
     res.send(result_financeiro)
