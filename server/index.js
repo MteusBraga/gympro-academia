@@ -168,22 +168,26 @@ app.get('/listaFuncionario', async (req, res)=>{
 })
 
 app.get('/listaCliente', async (req, res)=>{
-    const lista_funcionario = await queryDB({
-        query:`SELECT p.nome AS nome,
-        p.sexo AS sexo,
-        p.nascimento AS DataNascimento,
-        p.cpf AS cpf,
-        p.email AS email,
-        p.telefone AS telefone,
-        pl.tipo AS TipoPlano,
-        pl.pacote AS PacotePlano
-        FROM cliente c
-        JOIN pessoa p ON c.pessoa_idpessoa = p.idpessoa
-        JOIN plano pl ON c.plano_idplano = pl.idplano;
-        `
-    })
+    const search = req.query.search
+    console.log(`Search:  ${search}`)
+    const clientes = await atendente.listarClientes(search)
 
-    res.send(lista_funcionario)
+    // const lista_funcionario = await queryDB({
+    //     query:`SELECT p.nome AS nome,
+    //     p.sexo AS sexo,
+    //     p.nascimento AS DataNascimento,
+    //     p.cpf AS cpf,
+    //     p.email AS email,
+    //     p.telefone AS telefone,
+    //     pl.tipo AS TipoPlano,
+    //     pl.pacote AS PacotePlano
+    //     FROM cliente c
+    //     JOIN pessoa p ON c.pessoa_idpessoa = p.idpessoa
+    //     JOIN plano pl ON c.plano_idplano = pl.idplano;
+    //     `
+    // })
+    console.log(clientes)
+    res.send(clientes)
 })
 
 app.post('/listarDataCliente', async (req, res)=>{

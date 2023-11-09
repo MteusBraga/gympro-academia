@@ -20,7 +20,7 @@
     flex-direction:column;
     align-items: center;
     align-content: space-between;
-    gap: 220px;
+    gap: 240px;
 
     width: 400px;  
     flex-shrink: 0; 
@@ -146,6 +146,16 @@
     background-color: var(--vermelho-claro);
 }
 
+.cabecalhoNumber{
+    color: white;
+    padding: 7px 10px;
+    font-size: 20px;
+    position: sticky;
+    top: 0;
+    background-color: var(--vermelho-claro);
+    text-align: right;
+}
+
 .dados{
     padding: 5px 10px;
     color: rgb(63, 63, 63);
@@ -158,6 +168,13 @@
     display: flex;
     align-content: space-between;
     gap: 15px;
+}
+
+.dadosNumber{
+    text-align: right;
+    padding: 5px 10px;
+    color: rgb(63, 63, 63);
+    border-left: 1px solid rgb(63, 63, 63);
 }
 
 .paraTabela{
@@ -183,4 +200,104 @@
     font-weight: 700;
     margin-top: 37px;
     line-height: normal; 
+}
+
+.titulodash{
+    margin-top: 17px;
+    color: var(--preto);
+    font-family: Outfit;
+    font-size: 56px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal; 
+}
+
+.dashboard{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+
+
+.avista{
+    background-color: #6661d9;
+    color: var(--branco);
+    font-family: Outfit;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal; 
+    width: 366px;
+    height: 163px;
+    border-radius: 18px;
+    padding: 22px;
+}
+
+.avista h2, .parcelado h2, .liquido h2, .totalClientes h2{
+    font-family: Outfit;
+    margin-top: 26px;
+    font-size: 48px;
+
+} 
+
+.parcelado{
+    background-color: #0d6efd;
+    color: var(--branco);
+    font-family: Outfit;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal; 
+    width: 366px;
+    height: 163px;
+    border-radius: 18px;
+    padding: 22px;
+}
+
+.liquido{
+    background-color: #ffc107;
+    color: var(--branco);
+    font-family: Outfit;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal; 
+    width: 366px;
+    height: 163px;
+    border-radius: 18px;
+    padding: 22px;
+
+}
+
+.totalClientes{
+    background-color: #dc3545;
+    color: var(--branco);
+    font-family: Outfit;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal; 
+    width: 366px;
+    height: 163px;
+    border-radius: 18px;
+    padding: 22px;
+
+}
+
+.tabelafinanceiro{
+    margin-top: 100px;
+    width: 800px;
+}
+
+.sla{
+    width: 100vw;
+}
+
+.sla2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

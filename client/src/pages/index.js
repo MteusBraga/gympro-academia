@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import style from "@/styles/home.module.css";
-import Img from 'react-image';
-
 
 export default function Home() {
     /*return (

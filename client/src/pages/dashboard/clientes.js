@@ -30,7 +30,6 @@ export default function Clientes(){
                     </div>
                 
                     <div className={style.divgerente}>
-                        <button>CLIENTES</button>
                         <button>FUNCIONÁRIOS</button>
                         <button>FINANCEIRO</button>
                     </div>
