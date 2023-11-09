@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap');
+
+/*:root{
+    --vermelho:#400500;
+    --branco: #FFF;
+    --bege: #CEF2F2;
+    --preto: #000;
+    --vermelho-claro: #F2220F;
+    --amarelo: #FFE500;
+
+}*/
+
+.container{
+    display: flex;
+    height: 100vh;
+}
+
+.parteGerente{
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    align-content: space-between;
+    gap: 220px;
+
+    width: 400px;  
+    flex-shrink: 0; 
+    background-color: var(--branco);
+}
+
+.parteGerente div{
+    flex: 1;
+}
+
+.parteGerente h1{
+    color: var(--preto);
+    font-family: Outfit;
+    font-size: 27px;
+    font-style: normal;
+    font-weight: 700;
+    margin-top: 37px;
+    line-height: normal; 
+}
+
+.icon{
+    width: 100px;
+    height: 100px;  
+    margin-top: 57px;
+}
+    
+.divUsuario{
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+}
+
+.divgerente{
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.divgerente button{
+    background-color: var(--vermelho-claro);
+    color: var(--branco);
+    border-radius: 54px;
+    width: 170px;
+    height: 50px;
+    font-family: Outfit;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+
+}
+
+.divgerente button:hover{
+    background-color: var(--branco);
+    color: var(--vermelho-claro);
+    border: 1px solid var(--vermelho-claro);
+    border-radius: 54px;
+    width: 170px;
+    height: 50px;
+    font-family: Outfit;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+
+}
+
+.divsair{
+    display:flex;
+    flex-direction:row;
+    gap:10px;
+}
+
+.divsair p{
+    color: var(--vermelho-claro);
+    font-family: Outfit;
+    margin-top: 5px;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal; 
+}
+
+.parteLista{
+    width: 100vw;
+    display: flex;
+}
+
+.parteLista h1{
+    font-size: 24px;
+    margin-bottom: 25px;;
+}
+
+.tabela{
+    border-collapse: collapse;
+    position: relative;
+    -webkit-border-radius: 25px;
+       -moz-border-radius: 25px;
+            border-radius: 25px;
+    width: 1300px;
+    border-radius: 50px;
+}
+
+.tabelaCabecalho{
+    background-color: var(--vermelho-claro);
+}
+
+.linha:nth-child(even){
+    background-color: rgb(250, 213, 213);
+    
+}
+
+.linha:nth-child(odd){
+    background-color: #f6f6f6;
+}
+
+.cabecalho{
+    text-align: left;
+    color: white;
+    padding: 7px 10px;
+    font-size: 20px;
+    position: sticky;
+    top: 0;
+    background-color: var(--vermelho-claro);
+}
+
+.dados{
+    padding: 5px 10px;
+    color: rgb(63, 63, 63);
+}
+
+.dadosEdit{
+    padding: 0px 10px 0px 10px;
+    color: rgb(63, 63, 63);
+    padding: 5px 10px;
+    display: flex;
+    align-content: space-between;
+    gap: 15px;
+}
+
+.paraTabela{
+    overflow: auto;
+    height: 500px;
+    margin: 15px;
+    box-shadow: 20px 14px 40px  rgba(0, 0, 0, 0.20);
+}
+
+.containerLista{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    margin: auto;
+}
+
+.containerLista h1{
+    color: var(--preto);
+    font-family: Outfit;
+    font-size: 37px;
+    font-style: normal;
+    font-weight: 700;
+    margin-top: 37px;
+    line-height: normal; 
+}

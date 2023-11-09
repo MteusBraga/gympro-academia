@@ -2,7 +2,6 @@ import { useForm } from "react-hook-form"
 import { useRouter } from "next/router"
 import axios from "axios";
 import { useEffect, useState } from "react";
-import style from '@/styles/CadastroCliente.module.css'
 
 export default function CadastroClientes (){
     const [planos, setPlanos] = useState([])
@@ -27,7 +26,7 @@ export default function CadastroClientes (){
         setSelectedValue(event.target.value); // Atualiza o estado com o valor selecionado
     };
     return(
-        <main className=" h-screen flexdps  items-center justify-center">
+        <main className=" h-screen flexdps items-center justify-center">
             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-lg bg-white p-5 rounded-lg">
                 <h2 className="mt-5 mb-2 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">CADASTRO CLIENTE</h2>
                 <form className="flex flex-col" action="submit" onSubmit={handleSubmit(async (data)=>{
