@@ -292,11 +292,11 @@
     width: 800px;
 }
 
-.sla{
+.containerTable{
     width: 100vw;
 }
 
-.sla2{
+.caixaTable{
     display: flex;
     flex-direction: column;
     align-items: center;

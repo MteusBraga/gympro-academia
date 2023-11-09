@@ -38,8 +38,8 @@ export default function Financeiro(){
                         <p>SAIR</p>
                     </div>
                 </div>
-                <div className={style.sla}>
-                    <div className={style.sla2}>
+                <div className={style.containerTable}>
+                    <div className={style.caixaTable}>
                         <div>
                             <h1 className={style.titulodash}>Dashboard</h1>
                             <div className={style.dashboard}>
