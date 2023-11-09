@@ -28,7 +28,7 @@ export default function Financeiro(){
                 </tr>
                 </thead>
                 <tbody>
-                {dados.total_planos.map(items => (
+                {dados.total_planos?.map(items => (
                     <tr key={items.NomePlano}>
                         <td>{items.NomePlano}</td>
                         <td>{items.QuantidadeAssociacoes}</td>

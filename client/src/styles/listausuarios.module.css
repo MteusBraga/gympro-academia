@@ -12,33 +12,29 @@
 
 .container{
     display: flex;
-    align-items: center;
+    height: 100vh;
 }
 
 .parteGerente{
     display: flex;
     flex-direction:column;
     align-items: center;
-    
+    align-content: space-between;
+    gap: 220px;
+
     width: 400px;  
-    height: 1024px; 
     flex-shrink: 0; 
     background-color: var(--branco);
 }
 
-.parteGerente p{
-    color: var(--vermelho-claro);
-    font-family: Outfit;
-    font-size: 32px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal; 
+.parteGerente div{
+    flex: 1;
 }
 
 .parteGerente h1{
     color: var(--preto);
     font-family: Outfit;
-    font-size: 33px;
+    font-size: 27px;
     font-style: normal;
     font-weight: 700;
     margin-top: 37px;
@@ -46,103 +42,145 @@
 }
 
 .icon{
-    width: 200px;
-    height: 200px;  
+    width: 100px;
+    height: 100px;  
     margin-top: 57px;
 }
     
+.divUsuario{
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+}
+
 .divgerente{
     display: flex;
     align-items: start;
     flex-direction: column;
-    margin-top: 80px;
     gap: 20px;
-}
-
-.divgerente p{
-    color: var(--vermelho);
-    font-size: 24px;
 }
 
 .divgerente button{
     background-color: var(--vermelho-claro);
     color: var(--branco);
     border-radius: 54px;
-    width: 246px;
-    height: 70px;
-    color: var(--branco);
+    width: 170px;
+    height: 50px;
     font-family: Outfit;
-    font-size: 25px;
+    font-size: 15px;
     font-style: normal;
-    font-weight: 700;
+    font-weight: 600;
+
+}
+
+.divgerente button:hover{
+    background-color: var(--branco);
+    color: var(--vermelho-claro);
+    border: 1px solid var(--vermelho-claro);
+    border-radius: 54px;
+    width: 170px;
+    height: 50px;
+    font-family: Outfit;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
 
 }
 
 .divsair{
-    margin-top:99px;
     display:flex;
     flex-direction:row;
-    align-items: center;
     gap:10px;
 }
 
+.divsair p{
+    color: var(--vermelho-claro);
+    font-family: Outfit;
+    margin-top: 5px;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal; 
+}
 
 .parteLista{
+    width: 100vw;
     display: flex;
-    flex-direction:column;
-    align-items: center;  
-    height: 1024px; 
-    width: auto;
-    flex-shrink: 0; 
-    background-color: #E3E3E3;
-    box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.199);
+}
+
+.parteLista h1{
+    font-size: 24px;
+    margin-bottom: 25px;;
 }
 
 .tabela{
     border-collapse: collapse;
     position: relative;
-    box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.199);
-    border: solid #ccc 1px;
     -webkit-border-radius: 25px;
        -moz-border-radius: 25px;
             border-radius: 25px;
+    width: 1300px;
+    border-radius: 50px;
 }
 
 .tabelaCabecalho{
-    background-color: var(--vermelho-padrao);
+    background-color: var(--vermelho-claro);
 }
 
 .linha:nth-child(even){
-    background-color: rgb(255, 154, 154);
+    background-color: rgb(250, 213, 213);
+    
 }
 
 .linha:nth-child(odd){
-    background-color: rgb(196, 192, 192);
+    background-color: #f6f6f6;
 }
 
 .cabecalho{
     text-align: left;
     color: white;
-    padding: 5px 10px;
+    padding: 7px 10px;
+    font-size: 20px;
     position: sticky;
     top: 0;
-    background-color: var(--vermelho-padrao);
+    background-color: var(--vermelho-claro);
 }
 
 .dados{
-    padding: 0px 10px 0px 10px;
+    padding: 5px 10px;
     color: rgb(63, 63, 63);
 }
 
 .dadosEdit{
     padding: 0px 10px 0px 10px;
     color: rgb(63, 63, 63);
+    padding: 5px 10px;
     display: flex;
-    flex: auto;
+    align-content: space-between;
+    gap: 15px;
 }
 
 .paraTabela{
     overflow: auto;
     height: 500px;
-    box-sizing: border-box;
+    margin: 15px;
+    box-shadow: 20px 14px 40px  rgba(0, 0, 0, 0.20);
+}
+
+.containerLista{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    margin: auto;
+}
+
+.containerLista h1{
+    color: var(--preto);
+    font-family: Outfit;
+    font-size: 37px;
+    font-style: normal;
+    font-weight: 700;
+    margin-top: 37px;
+    line-height: normal; 
 }
