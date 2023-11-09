@@ -3,8 +3,41 @@ const queryDB = require('../dbconnetion')
 const { randomUUID } = require('crypto')
 
 class Atendente extends Funcionario{
-    listarClientes(){
-
+    async listarClientes(search){
+        if(search){
+            const lista_funcionario = await queryDB({
+                query:`SELECT p.nome AS nome,
+                p.sexo AS sexo,
+                p.nascimento AS DataNascimento,
+                p.cpf AS cpf,
+                p.email AS email,
+                p.telefone AS telefone,
+                pl.tipo AS TipoPlano,
+                pl.pacote AS PacotePlano
+                FROM cliente c
+                JOIN pessoa p ON c.pessoa_idpessoa = p.idpessoa
+                JOIN plano pl ON c.plano_idplano = pl.idplano
+                WHERE nome LIKE '%${search}%' `,
+                values:[search]
+            })
+            return lista_funcionario
+        }else{
+            const lista_funcionario = await queryDB({
+                query:`SELECT p.nome AS nome,
+                p.sexo AS sexo,
+                p.nascimento AS DataNascimento,
+                p.cpf AS cpf,
+                p.email AS email,
+                p.telefone AS telefone,
+                pl.tipo AS TipoPlano,
+                pl.pacote AS PacotePlano
+                FROM cliente c
+                JOIN pessoa p ON c.pessoa_idpessoa = p.idpessoa
+                JOIN plano pl ON c.plano_idplano = pl.idplano;
+                `
+            })
+            return lista_funcionario
+        }
     }
 
     editarCliente(){
