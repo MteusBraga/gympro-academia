@@ -8,7 +8,7 @@ const express = require('express');
 const cors = require('cors');
 const queryDB = require('./dbconnetion');
 const app = express();
-
+const port = 3333
 const cliente = new Cliente()
 const funcionario = new Funcionario()
 const atendente = new Atendente()
@@ -169,9 +169,7 @@ app.get('/listaFuncionario', async (req, res)=>{
 
 app.get('/listaCliente', async (req, res)=>{
     const search = req.query.search
-    console.log(`Search:  ${search}`)
-    const clientes = await atendente.listarClientes(search)
-
+    atendente.listarClientes(search)
     // const lista_funcionario = await queryDB({
     //     query:`SELECT p.nome AS nome,
     //     p.sexo AS sexo,
@@ -186,8 +184,8 @@ app.get('/listaCliente', async (req, res)=>{
     //     JOIN plano pl ON c.plano_idplano = pl.idplano;
     //     `
     // })
-    console.log(clientes)
-    res.send(clientes)
+
+    res.send(atendente.listarClientes(search))
 })
 
 app.post('/listarDataCliente', async (req, res)=>{
@@ -223,6 +221,6 @@ app.post('/recuperarUsuario', async (req, res)=>{
     res.send(user)
 })
 
-app.listen(3333, ()=>{
-    console.log('ligou menó')
+app.listen(port, ()=>{
+    console.log(`Servidor ligado na porta: ${port}`)
 })
