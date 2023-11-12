@@ -113,23 +113,12 @@
     margin-bottom: 25px;;
 }
 
-.tabela{
-    border-collapse: collapse;
-    position: relative;
-    -webkit-border-radius: 25px;
-       -moz-border-radius: 25px;
-            border-radius: 25px;
-    width: 1300px;
-    border-radius: 50px;
-}
-
 .tabelaCabecalho{
     background-color: var(--vermelho-claro);
 }
 
 .linha:nth-child(even){
     background-color: rgb(250, 213, 213);
-    
 }
 
 .linha:nth-child(odd){
@@ -161,27 +150,11 @@
     color: rgb(63, 63, 63);
 }
 
-.dadosEdit{
-    padding: 0px 10px 0px 10px;
-    color: rgb(63, 63, 63);
-    padding: 5px 10px;
-    display: flex;
-    align-content: space-between;
-    gap: 15px;
-}
-
 .dadosNumber{
     text-align: right;
     padding: 5px 10px;
     color: rgb(63, 63, 63);
     border-left: 1px solid rgb(63, 63, 63);
-}
-
-.paraTabela{
-    overflow: auto;
-    height: 500px;
-    margin: 15px;
-    box-shadow: 20px 14px 40px  rgba(0, 0, 0, 0.20);
 }
 
 .containerLista{
@@ -212,19 +185,9 @@
     line-height: normal; 
 }
 
-.dashboard{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-    margin-top: 20px;
-}
-
-
-
-.avista{
-    background-color: #6661d9;
-    color: var(--branco);
+.financeiros{
+    color: var(--vermelho-claro);
+    border: 1px solid var(--vermelho-claro);
     font-family: Outfit;
     font-size: 22px;
     font-style: normal;
@@ -234,70 +197,37 @@
     height: 163px;
     border-radius: 18px;
     padding: 22px;
+    margin: 10px;
 }
 
-.avista h2, .parcelado h2, .liquido h2, .totalClientes h2{
-    font-family: Outfit;
+.financeiros:hover{
+    color: var(--branco);
+    background-color: var(--vermelho-claro);
+    transition: 0.5s;
+}
+
+.financeiros H2{
     margin-top: 26px;
     font-size: 48px;
-
-} 
-
-.parcelado{
-    background-color: #0d6efd;
-    color: var(--branco);
-    font-family: Outfit;
-    font-size: 22px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal; 
-    width: 366px;
-    height: 163px;
-    border-radius: 18px;
-    padding: 22px;
 }
 
-.liquido{
-    background-color: #ffc107;
-    color: var(--branco);
-    font-family: Outfit;
-    font-size: 22px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal; 
-    width: 366px;
-    height: 163px;
-    border-radius: 18px;
-    padding: 22px;
-
-}
-
-.totalClientes{
-    background-color: #dc3545;
-    color: var(--branco);
-    font-family: Outfit;
-    font-size: 22px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal; 
-    width: 366px;
-    height: 163px;
-    border-radius: 18px;
-    padding: 22px;
-
-}
-
-.tabelafinanceiro{
-    margin-top: 100px;
-    width: 800px;
+.topFinanceiro{
+    display: flex;
+    gap: 20px;
+    margin-top: 50px;
 }
 
 .containerTable{
     width: 100vw;
+    padding: 20px;
 }
 
-.caixaTable{
+.tabelafinanceiro{
+    width: 500px;
+}
+
+.dashboard{
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-wrap: wrap;
+    display: 10px;
 }

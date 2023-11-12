@@ -1,0 +1,96 @@
+.container{
+    padding: 20px;
+    height: 775px;
+    overflow-y: scroll;
+}
+
+.barraFixa{
+    position: sticky;
+    top: -20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 70vw;
+    padding: 10px 15px;
+    background-color: var(--vermelho-claro);
+    color: white;
+    font-weight: bold;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.384);
+}
+
+.barraFixa p{
+    width: 60px;
+}
+
+.barra{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+    margin: 10px 0px;
+    width: 70vw;
+    background-color: white;
+    border-radius: 50px;
+    box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.226);
+}
+
+.barra:hover{
+    background-color: rgb(255, 69, 69);
+    color: white;
+    transition: 0.4s;
+}
+
+.dados{
+    padding: 0px 5px;
+    width: 10vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.2em;
+}
+
+.dados:hover{
+    overflow: visible;
+    white-space:inherit;
+}
+
+
+.dadosG{
+    padding: 0px 5px;
+    width: 10vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.2em;
+}
+
+.dadosG:hover{
+    overflow: visible;
+    width: fit-content;
+}
+
+.dadosEdit{
+    padding: 0px 10px 0px 10px;
+    color: rgb(63, 63, 63);
+    display: flex;
+    align-content: space-between;
+    gap: 15px;
+}
+
+.dadosEdit a{
+    cursor: pointer;
+}
+
+.dadosEdit a:hover{
+    animation: translateY 1s infinite alternate;
+    color: white;
+}
+
+@keyframes translateY{
+    from{
+        transform: translateY(0) scale(1);
+    }
+    to{
+        transform: translateY(-5px) scale(1.1);
+    }
+}

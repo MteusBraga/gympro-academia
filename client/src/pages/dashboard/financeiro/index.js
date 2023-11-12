@@ -39,46 +39,45 @@ export default function Financeiro(){
                     </div>
                 </div>
                 <div className={style.containerTable}>
-                    <div className={style.caixaTable}>
-                        <div>
-                            <h1 className={style.titulodash}>Dashboard</h1>
-                            <div className={style.dashboard}>
-                                <div className={style.avista}>
+                    <h1 className={style.titulodash}>Dashboard</h1>
+                    <div className={style.topFinanceiro}>
+                        <table className={style.tabelafinanceiro}>
+                            <thead>
+                            <tr className={style.tabelaCabecalho}>
+                                <th className={style.cabecalho}>Nome do plano</th>
+                                <th className={style.cabecalhoNumber}>Quantidade Associados</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {dados.total_planos?.map(items => (
+                                <tr key={items.NomePlano} className={style.linha}>
+                                    <td className={style.dados}>{items.NomePlano}</td>
+                                    <td className={style.dadosNumber}>{items.QuantidadeAssociacoes}</td>
+                                </tr>
+                            ))}
+                            </tbody>
+                        </table>
+                        <div className={style.dashboard}>
+                            <div>
+                                <div className={style.financeiros}>
                                     <h1> FATURAMENTO À VISTA </h1>
                                     <h2> R$ {dados.SomaValorVista} </h2>
                                 </div>
-                                <div className={style.parcelado}>
+                                <div className={style.financeiros}>
                                     <h1>FATURAMENTO PARCELADO  </h1>
                                     <h2> R$ {dados.SomaValorParcelado?.toFixed(2)} </h2>
                                 </div>
-                                <div className={style.liquido}>
+                            </div>
+                            <div>
+                                <div className={style.financeiros}>
                                     <h1>FATURAMENTO LÍQUIDO </h1>
                                     <h2>R$ { dados.TotalLiquido}</h2>
                                 </div>
-                                <div className={style.totalClientes}>
+                                <div className={style.financeiros}>
                                     <h1>TOTAL CLIENTES</h1>
                                     <h2> {dados.QuantidadeTotalClientes}</h2>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <div>
-                            <table className={style.tabelafinanceiro}>
-                                <thead>
-                                <tr className={style.tabelaCabecalho}>
-                                    <th className={style.cabecalho}>Nome do plano</th>
-                                    <th className={style.cabecalhoNumber}>Quantidade Associados</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {dados.total_planos?.map(items => (
-                                    <tr key={items.NomePlano} className={style.linha}>
-                                        <td className={style.dados}>{items.NomePlano}</td>
-                                        <td className={style.dadosNumber}>{items.QuantidadeAssociacoes}</td>
-                                    </tr>
-                                ))}
-                                </tbody>
-                            </table>
                         </div>
                     </div>
                 </div>
