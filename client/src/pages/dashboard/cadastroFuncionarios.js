@@ -1,12 +1,16 @@
 import { useForm } from "react-hook-form"
 import { useRouter } from "next/router"
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { parseCookies } from "nookies";
+import { AuthContext } from "@/contexts/AuthContext";
+import { redirect } from "next/dist/server/api-utils";
 
 export default function CadastroFuncionario (){
     const [selectedValue, setSelectedValue] = useState('1')
     const form = useForm()
     const { register, handleSubmit, setValue, getValues, reset } = useForm();
+    const { user, signOut} = useContext(AuthContext)
 
     const handleSelectChange = (event) => {
         setSelectedValue(event.target.value); // Atualiza o estado com o valor selecionado
@@ -42,9 +46,9 @@ export default function CadastroFuncionario (){
                         <div>
                             <label className="block text-sm font-medium leading-6 text-gray-900 mb-1">Sexo</label>
                             <input className="w-3.5 h-4" type="radio" value="m"required {...register("sexo")} checked/>
-                            <label for="default-radio-1" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-800">Homem</label>
+                            <label className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-800">Homem</label>
                             <input className="w-3.5 h-4 ml-2" type="radio" value="f" required {...register("sexo")}/>
-                            <label for="default-radio-1" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-800">Mulher</label>
+                            <label className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-800">Mulher</label>
                         </div>
                         <div>
                             <label className="block text-sm font-medium leading-6 text-gray-900 mb-1">Data de nascimento</label>
@@ -99,4 +103,22 @@ export default function CadastroFuncionario (){
             </div>
         </main>
     )
+}
+
+export function getServerSideProps (ctx) {
+    const { ['gympro-token']: token } = parseCookies(ctx)
+    if(!token){
+        return{
+            redirect:{
+                destination: '/',
+                permanent: false,
+            }
+        }
+    }
+
+    return{
+        props:{
+            
+        }
+    }
 }
