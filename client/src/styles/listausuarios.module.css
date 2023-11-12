@@ -223,8 +223,8 @@
 
 
 .avista{
-    background-color: #6661d9;
     color: var(--branco);
+    background-color: #6661d9;
     font-family: Outfit;
     font-size: 22px;
     font-style: normal;
@@ -234,6 +234,15 @@
     height: 163px;
     border-radius: 18px;
     padding: 22px;
+}
+
+.avista:hover{
+    border: 1px solid #6661d9;
+    color: #6661d9;
+    background-color: transparent;
+
+    transition: 0.7s;
+
 }
 
 .avista h2, .parcelado h2, .liquido h2, .totalClientes h2{
