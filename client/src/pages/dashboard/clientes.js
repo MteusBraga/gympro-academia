@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import style from "@/styles/listausuarios.module.css";
+import tabela from "@/styles/tabela.module.css";
 
 export default function Clientes(){
     const [clientes, setClientes] = useState([])
@@ -48,42 +49,50 @@ export default function Clientes(){
                         <div>
                             <h1>CLIENTES</h1>
                         </div>
-                        <div className={style.paraTabela}>
-                            <table className={style.tabela}>
-                                <thead>
-                                    <tr className={style.tabelaCabecalho}>
-                                        <th className={style.cabecalho}>Nome</th>
-                                        <th className={style.cabecalho}>Sexo</th>
-                                        <th className={style.cabecalho}>Data de Nascimento</th>
-                                        <th className={style.cabecalho}>CPF</th>
-                                        <th className={style.cabecalho}>Email</th>
-                                        <th className={style.cabecalho}>Telefone</th>
-                                        <th className={style.cabecalho}>Plano</th>
-                                        <th className={style.cabecalho}>Pacote</th>
-                                        <th className={style.cabecalho}>Ações</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {clientes.map(items=>{
-                                        return(
-                                            <tr className={style.linha}>
-                                                <td className={style.dados}>{items.nome}</td>
-                                                <td className={style.dados}>{items.sexo}</td>
-                                                <td className={style.dados}>{items.DataNascimento}</td>
-                                                <td className={style.dados}>{items.cpf}</td>
-                                                <td className={style.dados}>{items.email}</td>
-                                                <td className={style.dados}>{items.telefone}</td>
-                                                <td className={style.dados}>{items.TipoPlano}</td>
-                                                <td className={style.dados}>{items.PacotePlano}</td>
-                                                <td className={style.dadosEdit}>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pencil"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash-2"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
-                                                </td>
-                                            </tr>
-                                        )
-                                    })}
-                                </tbody>
-                            </table>
+                        <div className={tabela.container}>
+                            <div className={tabela.barraFixa}>
+                                <p>Nome</p>
+                                <p>Sexo</p>
+                                <p>Nascimento</p>
+                                <p>CPF</p>
+                                <p>Email</p>
+                                <p>Telefone</p>
+                                <p>Plano</p>
+                                <p>Pacote</p>
+                                <p>Ações</p>
+                            </div>
+                            {clientes.map(items=>(
+                            <div className={tabela.barra}>
+                                <p className={tabela.dados}>
+                                    {items.nome}
+                                </p>
+                                <p className={tabela.dados}>
+                                    {items.sexo}
+                                </p>
+                                <p className={tabela.dados}>
+                                    {items.DataNascimento}
+                                </p>
+                                <p className={tabela.dados}>
+                                    {items.cpf}
+                                </p>
+                                <p className={tabela.dadosG}>
+                                    {items.email}
+                                </p>
+                                <p className={tabela.dados}>
+                                    {items.telefone}
+                                </p>
+                                <p className={tabela.dados}>
+                                    {items.TipoPlano}
+                                </p>
+                                <p className={tabela.dados}>
+                                    {items.PacotePlano}
+                                </p>
+                                <div className={tabela.dadosEdit}>
+                                    <a><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pencil"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg></a>
+                                    <a><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash-2"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg></a>
+                                </div>
+                            </div>
+                                ))}
                         </div>
                     </div>
                 </div>
