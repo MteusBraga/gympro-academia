@@ -6,7 +6,7 @@ import { parseCookies } from "nookies";
 import { AuthContext } from "@/contexts/AuthContext";
 import { redirect } from "next/dist/server/api-utils";
 
-export default function CadastroFuncionario (){
+export default function CadastroFuncionario(){
     const [selectedValue, setSelectedValue] = useState('1')
     const form = useForm()
     const { register, handleSubmit, setValue, getValues, reset } = useForm();
@@ -18,7 +18,7 @@ export default function CadastroFuncionario (){
     };
     return(
         <main className=" h-screen flexdps items-center justify-center">
-            <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-lg bg-white p-5 rounded-lg">
+            <div className="mt-10 m-5 sm:mx-auto sm:w-full sm:max-w-lg bg-white p-5 rounded-lg">
                 <h2 className="mt-5 mb-2 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">CADASTRO FUNCIONÁRIO</h2>
                 <form className="flex flex-col" action="submit" onSubmit={handleSubmit(async (data)=>{
                     console.log(data)

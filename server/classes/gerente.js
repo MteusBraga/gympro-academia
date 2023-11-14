@@ -1,6 +1,7 @@
 const Atendente = require("./atendente");
 const queryDB = require('../dbconnetion');
 const { randomUUID } = require('crypto')
+
 class Gerente extends Atendente{
     async createFuncionario(funcionario){
         const pessoaId = randomUUID()
@@ -27,6 +28,19 @@ class Gerente extends Atendente{
                     funcionario.dataAdmissao,
                     funcionario.dataPagamento,
                     pessoaId
+                ]
+            })
+        }
+        inserir()
+        }
+
+    async createModalidade(modalidade){
+        async function inserir(){
+            await queryDB({
+                query: 'INSERT INTO modalidade (nome, descricao) VALUES (?, ?)',
+                values: [
+                    modalidade.nome,
+                    modalidade.descricao
                 ]
             })
         }

@@ -37,6 +37,12 @@ app.post('/cadastroFuncionarios',async (req, res)=>{
     res.status(204).send()
 })
 
+app.post('/cadastroModalidade', async (req, res)=>{
+
+    gerente.createModalidade(req.body)
+    res.status(204).send()
+})
+
 app.get('/planos', async (req, res)=>{
     const result = await queryDB({
         query:'select * from plano'
@@ -138,11 +144,28 @@ app.get('/financeiro', async (req, res)=>{
         `
     })
 
+    const modalidade = await queryDB({
+        query: 'select nome, descricao from modalidade;'
+    })
+
+    const planosModalidade = await queryDB({
+        query: `SELECT
+        p.tipo AS plano,
+        GROUP_CONCAT(DISTINCT m.nome ORDER BY m.nome) AS modalidades
+    FROM
+        vinc_plano_modalidade pm
+    JOIN
+        plano p ON pm.plano_idplano = p.idplano
+    JOIN
+        modalidade m ON pm.modalidade_idmodalidade = m.idmodalidade
+    GROUP BY
+        p.tipo;`
+    })
     // Promise.all([
         
     // ])
 
-    const result_financeiro = {...faturamento_vista[0], ...faturamento_parcelado[0], ...faturamento_liquido[0], total_planos:total_planos, ...qnt_cliente[0], ...qnt_cliente_g[0]}
+    const result_financeiro = {...faturamento_vista[0], ...faturamento_parcelado[0], ...faturamento_liquido[0], total_planos:total_planos, ...qnt_cliente[0], ...qnt_cliente_g[0], modalidade:modalidade, planosModalidade:planosModalidade}
     res.send(result_financeiro)
 })
 

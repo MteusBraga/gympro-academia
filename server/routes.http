@@ -69,3 +69,12 @@ GET http://localhost:3333/financeiro
 
 ###
 GET http://localhost:3333/listaCliente?search=Diego  
+
+###
+POST http://localhost:3333/cadastroModalidade
+Content-Type: application/json
+
+{
+    "nome": "jiu-jitsu",
+    "descricao": "Estilo de luta que visa a imobilização"
+}
