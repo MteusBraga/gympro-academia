@@ -192,7 +192,7 @@ app.get('/listaFuncionario', async (req, res)=>{
 
 app.get('/listaCliente', async (req, res)=>{
     const search = req.query.search
-    console.log(`Search:  ${search}`)
+    // console.log(`Search:  ${search}`)
     const clientes = await atendente.listarClientes(search)
 
     // const lista_funcionario = await queryDB({
