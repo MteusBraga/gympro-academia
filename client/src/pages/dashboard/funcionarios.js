@@ -1,10 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import style from "@/styles/listausuarios.module.css";
 import tabela from "@/styles/tabela.module.css";
 
 
 export default function Funcionario() {
+    const router = useRouter()
     const [funcionario, setFuncionario] = useState([])
     useEffect(() => {
         trazerDados()
@@ -28,17 +30,23 @@ export default function Funcionario() {
                             <h1>USERNAME</h1>
                         </div>
                         <div className={style.divgerente}>
-                            <button>CLIENTES</button>
-                            <button>FINANCEIRO</button>
+                            <button onClick={() => router.push('/dashboard/clientes')}>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                <p>CLIENTES</p>
+                            </button>
+                            <button onClick={() => router.push('/dashboard/financeiro')}>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-dollar-sign"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg>    
+                                <p>FINANCEIRO</p>
+                            </button>
                         </div>
-                        <div className={style.divsair}>
+                        <button className={style.divsair}>
                             <svg width="53" height="53" viewBox="0 0 53 53" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M19.875 46.375H11.0417C9.87029 46.375 8.7469 45.9097 7.91861 45.0814C7.09033 44.2531 6.625 43.1297 6.625 41.9583V11.0417C6.625 9.87029 7.09033 8.7469 7.91861 7.91861C8.7469 7.09033 9.87029 6.625 11.0417 6.625H19.875" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M35.3333 37.5416L46.3749 26.5L35.3333 15.4583" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M46.375 26.5H19.875" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                             <p>SAIR</p>
-                        </div>
+                        </button>
                     </div>
                 </div>
                 <div className={style.parteLista}>

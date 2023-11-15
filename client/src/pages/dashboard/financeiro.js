@@ -1,9 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import style from "@/styles/listausuarios.module.css";
 
 export default function Financeiro(){
     const [dados, setDados] = useState([])
+    const router = useRouter()
 
     useEffect(()=>{
         trazerDados()
@@ -27,17 +29,23 @@ export default function Financeiro(){
                             <h1>USERNAME</h1>
                         </div>
                         <div className={style.divgerente}>
-                            <button>CLIENTES</button>
-                            <button>FUNCIONÁRIOS</button>
+                            <button onClick={() => router.push('/dashboard/clientes')}>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                <p>CLIENTES</p>
+                            </button>
+                            <button onClick={() => router.push('/dashboard/funcionarios')}>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-cog"><circle cx="18" cy="15" r="3"/><circle cx="9" cy="7" r="4"/><path d="M10 15H6a4 4 0 0 0-4 4v2"/><path d="m21.7 16.4-.9-.3"/><path d="m15.2 13.9-.9-.3"/><path d="m16.6 18.7.3-.9"/><path d="m19.1 12.2.3-.9"/><path d="m19.6 18.7-.4-1"/><path d="m16.8 12.3-.4-1"/><path d="m14.3 16.6 1-.4"/><path d="m20.7 13.8 1-.4"/></svg>
+                                <p>FUNCIONÁRIOS</p>
+                            </button>
                         </div>
-                        <div className={style.divsair}>
+                        <button className={style.divsair}>
                             <svg width="53" height="53" viewBox="0 0 53 53" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M19.875 46.375H11.0417C9.87029 46.375 8.7469 45.9097 7.91861 45.0814C7.09033 44.2531 6.625 43.1297 6.625 41.9583V11.0417C6.625 9.87029 7.09033 8.7469 7.91861 7.91861C8.7469 7.09033 9.87029 6.625 11.0417 6.625H19.875" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M35.3333 37.5416L46.3749 26.5L35.3333 15.4583" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M46.375 26.5H19.875" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                             <p>SAIR</p>
-                        </div>
+                        </button>
                     </div>
                 </div>
                 <div className={style.containerTable}>
@@ -92,7 +100,7 @@ export default function Financeiro(){
                                 <td className={style.dadosNumber}>{dados.QuantidadeMulheres}</td>
                             </tr>
                             <tr className={style.linha}>
-                                <th className={style.cabecalho}>Mulheres</th>
+                                <th className={style.cabecalho}>Total</th>
                                 <td className={style.dadosNumber}>{dados.QuantidadeTotalClientes}</td>
                             </tr>
                         </tbody>

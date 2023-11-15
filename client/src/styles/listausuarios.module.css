@@ -72,21 +72,28 @@
     font-size: 15px;
     font-style: normal;
     font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
 }
-
 
 .divgerente button:hover{
     background-color: var(--branco);
     color: var(--vermelho-claro);
     border: 1px solid var(--vermelho-claro);
     border-radius: 54px;
-    width: 170px;
-    height: 50px;
     font-family: Outfit;
     font-size: 15px;
     font-style: normal;
     font-weight: 600;
     transition: 0.5s;
+}
+
+.divgerente button:active{
+    background-color: var(--vermelho-claro);
+    color: var(--preto);
+    border: 1px solid var(--preto);
 }
 
 .divsair{
@@ -104,6 +111,44 @@
     font-style: normal;
     font-weight: 700;
     line-height: normal; 
+}
+
+@media screen and (max-width: 1400px){
+    .telaFixa{
+        width: 75px;
+    }
+
+    .parteGerente{
+        width: 75px;
+    }
+
+    .divUsuario h1{
+        display: none;
+    }
+
+    .icon{
+        height: 35px;
+        width: 35px;
+    }
+
+
+    .divgerente button{
+        height: 35px;
+        width: 35px;
+    }
+
+    .divgerente p{
+        display: none;
+    }
+
+    .divsair p{
+        display: none;
+    }
+
+    .divsair svg{
+        height: 37px;
+        width: 37px;
+    }
 }
 
 .parteLista{

@@ -102,3 +102,26 @@
         transform: translateY(-5px) scale(1.1);
     }
 }
+
+@media screen and (max-width: 1400px){
+    .barraFixa{
+        width: 80vw;
+    }
+
+    .barra{
+        width: 80vw;
+    }
+}
+
+
+@media screen and (max-height: 900px){
+    .container{
+        height: 600px;
+    }
+}
+
+@media screen and (max-height: 750px){
+    .container{
+        height: 500px;
+    }
+}
