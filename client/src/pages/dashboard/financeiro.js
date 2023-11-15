@@ -1,9 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import Modal from "@/components/modal"
 import style from "@/styles/listausuarios.module.css";
 
 export default function Financeiro(){
+    const [openModal, setOpenModal] = useState(false)
     const [dados, setDados] = useState([])
     const router = useRouter()
 
@@ -142,6 +144,8 @@ export default function Financeiro(){
                             </tbody>
                         </table>
                     </div>
+                    <button onClick={()=> setOpenModal(true)}>Criar Modalidade</button>
+                    <Modal isOpen={openModal} setCloseModal={() => setOpenModal(!openModal)}/>
                 </div>
             </div>
         </main>
