@@ -7,6 +7,7 @@ import { AuthContext } from "@/contexts/AuthContext";
 import { redirect } from "next/dist/server/api-utils";
 
 export default function CadastroFuncionario(){
+    const router = useRouter()
     const [selectedValue, setSelectedValue] = useState('1')
     const form = useForm()
     const { register, handleSubmit, setValue, getValues, reset } = useForm();
@@ -18,8 +19,13 @@ export default function CadastroFuncionario(){
     };
     return(
         <main className=" h-screen flexdps items-center justify-center">
-            <div className="mt-10 m-5 sm:mx-auto sm:w-full sm:max-w-lg bg-white p-5 rounded-lg">
-                <h2 className="mt-5 mb-2 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">CADASTRO FUNCIONÁRIO</h2>
+            <div className="mt-7 m-5 sm:mx-auto sm:w-full sm:max-w-lg bg-white p-5 rounded-lg">
+                <button className={style.voltar} onClick={() => router.push('/dashboard/funcionarios')}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-arrow-left">
+                        <path d="M12 19l-7-7 7-7M5 12h14"></path></svg>
+                    <p className="ml-2">Voltar</p>
+                </button>
+                <h2 className="mt-2 mb-2 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">CADASTRO FUNCIONÁRIO</h2>
                 <form className="flex flex-col" action="submit" onSubmit={handleSubmit(async (data)=>{
                     console.log(data)
                     console.log('valor selecionado '+ selectedValue)

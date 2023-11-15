@@ -24,6 +24,13 @@ const MODAL_STYLE = {
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'
 }
 
+const BOTAO_STYLE = {
+    width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-end"
+}
+
 export default function modal({isOpen, setCloseModal}) {
     const [planos, setPlanos] = useState([])
     const [selectedValue, setSelectedValue] = useState('1')
@@ -34,6 +41,12 @@ export default function modal({isOpen, setCloseModal}) {
         return(
             <div style={BACKGROUND_STYLE}>
                 <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-lg bg-white p-5 rounded-lg m-5" style={MODAL_STYLE}>
+                    <button style={BOTAO_STYLE} onClick={() => {
+                        setCloseModal()
+                        reset()
+                        }}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-circle"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>
+                    </button>
                     <h2 className="mt-5 mb-8 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">CADASTRO MODALIDADE</h2>
                     <form className="flex flex-col gap-3" action="submit" onSubmit={handleSubmit(async (data)=>{
                         await axios.post('http://localhost:3333/cadastroModalidade', {

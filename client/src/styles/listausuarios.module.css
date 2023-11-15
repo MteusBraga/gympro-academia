@@ -155,11 +155,6 @@
     display: flex;
 }
 
-.parteLista h1{
-    font-size: 24px;
-    margin-bottom: 25px;;
-}
-
 .tabela{
     overflow: auto;
     height: 300px;
@@ -216,8 +211,59 @@
     font-size: 37px;
     font-style: normal;
     font-weight: 700;
-    margin-top: 37px;
     line-height: normal; 
+}
+
+.adicionar{
+    display: flex;
+    align-items: center;
+    background-color: #e53e3e;
+    color: #ffffff;
+    padding: 5px 8px;
+    border-radius: 9999px;
+    border: 1px solid var(--vermelho-claro);
+    background-color: var(--vermelho-claro);
+    color: var(--branco);
+    cursor: pointer;
+    transition: 0.6s;
+}
+
+.adicionar:hover{
+    border: 1px solid var(--branco);
+    transform: scale(1.1);
+}
+
+.adicionar:active{
+    border: 1px solid var(--preto);
+    background-color: transparent;
+    color: var(--preto);
+}
+
+.adicionar svg{
+    margin-right: 4px;
+}
+
+@media screen and (max-width: 770px){
+    .adicionar{
+        padding: 5px;
+    }
+
+    .adicionar svg{
+        margin-right: 0;
+    }
+
+    .adicionar p{
+        display: none;
+    }
+}
+
+.cimaTabela{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 20px;
+    margin-bottom: 25px;
 }
 
 .titulodash{
@@ -274,4 +320,49 @@
     display: flex;
     flex-wrap: wrap;
     display: 10px;
+}
+
+.voltar{
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    border-radius: 9999px;
+    border: 1px solid var(--vermelho-claro);
+    background-color: var(--vermelho-claro);
+    color: var(--branco);
+    cursor: pointer;
+    transition: 0.6s;
+}
+
+.voltar p{
+    display: none;
+}
+
+.voltar:hover{
+    border: 1px solid var(--branco);
+    transform: scale(1.1);
+}
+
+.voltar:active{
+    border: 1px solid var(--preto);
+    background-color: transparent;
+    color: var(--preto);
+}
+
+.voltar:hover p{
+    display: block;
+}
+
+@media screen and (max-width: 770px){
+    .voltar:hover p{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 640px){
+
+    .voltar svg{
+        height: 20px;
+        width: 20px;
+    }
 }

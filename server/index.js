@@ -172,9 +172,11 @@ app.get('/financeiro', async (req, res)=>{
 
 app.get('/listaFuncionario', async (req, res)=>{
     const lista_funcionario = await queryDB({
-        query:`SELECT p.nome,
+        query:`SELECT
+        p.idpessoa AS idPessoa,
+        p.nome,
         f.cargo,
-        f.salario,   
+        f.salario,
         p.sexo,
         p.nascimento,
         p.cpf,
@@ -182,8 +184,9 @@ app.get('/listaFuncionario', async (req, res)=>{
         p.telefone,
         f.dataAdmissao,
         f.dataPagamento
-        FROM funcionario f
-        JOIN pessoa p ON f.pessoa_idpessoa = p.idpessoa;        
+            FROM
+        funcionario f
+        JOIN pessoa p ON f.pessoa_idpessoa = p.idpessoa;
         `
     })
 
