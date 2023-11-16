@@ -78,3 +78,11 @@ Content-Type: application/json
     "nome": "jiu-jitsu",
     "descricao": "Estilo de luta que visa a imobilização"
 }
+
+###
+DELETE http://localhost:3333/apagarUsuario
+Content-Type: application/json
+
+{
+    "idPessoa": "789"
+}

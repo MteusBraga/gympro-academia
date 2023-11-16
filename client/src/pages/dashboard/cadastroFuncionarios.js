@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form"
 import { useRouter } from "next/router"
 import axios from "axios";
+import style from "@/styles/listausuarios.module.css";
 import { useContext, useEffect, useState } from "react";
 import { parseCookies } from "nookies";
 import { AuthContext } from "@/contexts/AuthContext";
@@ -111,7 +112,7 @@ export default function CadastroFuncionario(){
     )
 }
 
-export function getServerSideProps (ctx) {
+/*export function getServerSideProps (ctx) {
     const { ['gympro-token']: token } = parseCookies(ctx)
     if(!token){
         return{
@@ -127,4 +128,4 @@ export function getServerSideProps (ctx) {
             
         }
     }
-}
+}*/
