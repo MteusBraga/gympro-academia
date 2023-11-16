@@ -31,12 +31,13 @@ class Atendente extends Funcionario{
                 p.cpf AS cpf,
                 p.email AS email,
                 p.telefone AS telefone,
+                p.senha AS senha,
                 pl.tipo AS TipoPlano,
                 pl.pacote AS PacotePlano
-                    FROM
+            FROM
                 cliente c
                 JOIN pessoa p ON c.pessoa_idpessoa = p.idpessoa
-                JOIN plano pl ON c.plano_idplano = pl.idplano;
+                JOIN plano pl ON c.plano_idplano = pl.idplano;            
                 `
             })
             return lista_funcionario
@@ -77,6 +78,50 @@ class Atendente extends Funcionario{
                 values: [
                     cliente.plano_idplano, 
                     pessoaId 
+                ]
+            })
+        }
+        inserir()
+    }
+
+    async editarCliente(cliente){     
+        const idPessoa = cliente.idpessoa
+
+        async function inserir(){
+            await queryDB({
+                query: `UPDATE pessoa
+                        SET
+                            nome = ?,
+                            sexo = ?,
+                            nascimento = ?,
+                            cpf = ?,
+                            email = ?,
+                            telefone = ?,
+                            senha = ? 
+                        WHERE
+                            idpessoa = ?;
+                    `,
+                values: [
+                    cliente.nome, 
+                    cliente.sexo, 
+                    cliente.nascimento, 
+                    cliente.cpf, 
+                    cliente.email, 
+                    cliente.telefone, 
+                    cliente.senha,
+                    idPessoa
+                ]
+            })
+            queryDB({
+                query: `UPDATE cliente
+                        SET
+                            plano_idplano = ?
+                        WHERE
+                            pessoa_idpessoa = ?;
+                    `,
+                values: [
+                    cliente.plano_idplano, 
+                    idPessoa 
                 ]
             })
         }

@@ -254,6 +254,12 @@ app.post('/apagarUsuario', async (req, res) => {
     res.status(204).send()
 })
 
+app.post('/editarCliente', async (req, res) => {
+    console.log(req.body)
+    atendente.editarCliente(req.body)
+
+    res.status(204).send()
+})
 app.post('/recuperarUsuario', async (req, res)=>{
     const { token } = req.body
     const user  = await autenticacao.recuperarUsuario(token)

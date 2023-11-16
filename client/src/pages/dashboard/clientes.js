@@ -7,6 +7,7 @@ import style from "@/styles/listausuarios.module.css";
 import tabela from "@/styles/tabela.module.css";
 
 export default function Clientes(){
+    const [objSelecionada, setObjSelecionada] = useState([])
     const [pessoaSelecionada, setPessoaSelecionada] = useState({})
     const [openModal, setOpenModal] = useState(false) /*Modal de excluir*/ 
     const [openEdit, setOpenEdit] = useState(false) /*Modal de editar*/
@@ -105,7 +106,10 @@ export default function Clientes(){
                                     {items.PacotePlano}
                                 </p>
                                 <div className={tabela.dadosEdit}>
-                                    <a onClick={() => setOpenEdit(true)}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pencil"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg></a>
+                                    <a onClick={() => {
+                                        setObjSelecionada(items)
+                                        setOpenEdit(true)
+                                        }}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pencil"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg></a>
                                     <a onClick={()=> {
                                         setPessoaSelecionada(items.idPessoa)
                                         setOpenModal(true)
@@ -114,7 +118,7 @@ export default function Clientes(){
                             </div>
                                 ))}
                             <ExcluirConta isOpen={openModal} setCloseModal={() => setOpenModal(!openModal)} idPessoa={pessoaSelecionada}/>
-                            <EditPlano isOpen={openEdit} setCloseEdit={() => setOpenEdit(!openEdit)}/>
+                            <EditPlano isOpen={openEdit} setCloseEdit={() => setOpenEdit(!openEdit)} informacoes={objSelecionada} />
                         </div>
                     </div>
                 </div>

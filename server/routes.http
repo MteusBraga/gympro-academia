@@ -86,3 +86,19 @@ Content-Type: application/json
 {
     "idPessoa": "789"
 }
+
+###
+POST http://localhost:3333/editarCliente
+Content-Type: application/json
+
+{
+    "idpessoa": "10",
+    "nome": "Josimar Junior",
+    "sexo": "m",
+    "nascimento": "2003-11-23",
+    "cpf": "11111111111",
+    "email": "josimarjunior.cg@gmail.com",
+    "telefone": "888888888",
+    "senha": "junior123",
+    "plano_idplano": 4
+}
