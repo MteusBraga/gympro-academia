@@ -1,11 +1,15 @@
 const Funcionario = require('./funcionario')
 const queryDB = require('../dbconnetion')
 const { randomUUID } = require('crypto')
+const QueryDBAdapter = require('./queryDBAdapter')
 
 class Atendente extends Funcionario{
+
+    queryDB = new QueryDBAdapter()
+
     async listarClientes(search){
         if(search){
-            const lista_funcionario = await queryDB({
+            const lista_funcionario = await this.queryDB.fazerQuery({
                 query:`SELECT p.nome AS nome,
                 p.sexo AS sexo,
                 p.nascimento AS DataNascimento,
@@ -26,6 +30,7 @@ class Atendente extends Funcionario{
                 query:`SELECT
                 p.idpessoa AS idPessoa,
                 p.nome AS nome,
+
                 p.sexo AS sexo,
                 p.nascimento AS DataNascimento,
                 p.cpf AS cpf,
