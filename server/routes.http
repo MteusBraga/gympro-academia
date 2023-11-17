@@ -102,3 +102,22 @@ Content-Type: application/json
     "senha": "junior123",
     "plano_idplano": 4
 }
+
+###
+POST http://localhost:3333/editarFuncionario
+Content-Type: application/json
+
+{
+    "idpessoa": "21",
+    "nome": "Rainha da Caximbinha",
+    "sexo": "f",
+    "nascimento": "2000-10-10",
+    "cpf": "11131112111",
+    "email": "caximbinha@gmail.com",
+    "telefone": "888778888",
+    "senha": "caxumba",
+    "cargo": "zelador",
+    "salario": "600",
+    "dataAdmissao": "2020-10-10",
+    "dataPagamento": "2020-10-10"
+}

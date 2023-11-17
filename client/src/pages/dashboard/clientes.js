@@ -2,7 +2,7 @@ import axios from "axios";
 import { Children, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import ExcluirConta from "@/components/excluirConta"
-import EditPlano from "@/components/editPlano"
+import EditPlano from "@/components/editPlanoCliente"
 import style from "@/styles/listausuarios.module.css";
 import tabela from "@/styles/tabela.module.css";
 

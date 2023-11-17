@@ -184,7 +184,8 @@ app.get('/listaFuncionario', async (req, res)=>{
         p.email,
         p.telefone,
         f.dataAdmissao,
-        f.dataPagamento
+        f.dataPagamento,
+        p.senha
             FROM
         funcionario f
         JOIN pessoa p ON f.pessoa_idpessoa = p.idpessoa;
@@ -260,6 +261,14 @@ app.post('/editarCliente', async (req, res) => {
 
     res.status(204).send()
 })
+
+app.post('/editarFuncionario', async (req, res) => {
+    console.log(req.body)
+    gerente.editarFuncionario(req.body)
+
+    res.status(204).send()
+})
+
 app.post('/recuperarUsuario', async (req, res)=>{
     const { token } = req.body
     const user  = await autenticacao.recuperarUsuario(token)
