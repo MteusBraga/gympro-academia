@@ -1,8 +1,20 @@
 const Atendente = require("./atendente");
 const queryDB = require('../dbconnetion');
 const { randomUUID } = require('crypto')
+const FacadeFinanceiro = require('./facadeFinanceiro')
 
 class Gerente extends Atendente{
+    facadeFinanceiro = new FacadeFinanceiro()
+
+    async obterFinancas(){
+        await this.facadeFinanceiro.inicializarParametros()
+
+        const dados = await this.facadeFinanceiro.obterDados()
+        console.log(dados)
+        
+        return dados
+    }
+    
     async createFuncionario(funcionario){
         const pessoaId = randomUUID()
         
