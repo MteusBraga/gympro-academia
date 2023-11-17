@@ -32,7 +32,7 @@ class Gerente extends Atendente{
             })
         }
         inserir()
-        }
+    }
 
     async createModalidade(modalidade){
         async function inserir(){
@@ -41,6 +41,56 @@ class Gerente extends Atendente{
                 values: [
                     modalidade.nome,
                     modalidade.descricao
+                ]
+            })
+        }
+        inserir()
+    }
+
+    async editarFuncionario(funcionario){     
+        const idPessoa = funcionario.idpessoa
+
+        async function inserir(){
+            await queryDB({
+                query: `UPDATE pessoa
+                        SET
+                            nome = ?,
+                            sexo = ?,
+                            nascimento = ?,
+                            cpf = ?,
+                            email = ?,
+                            telefone = ?,
+                            senha = ?
+                        WHERE
+                            idpessoa = ?;
+                    `,
+                values: [
+                    funcionario.nome, 
+                    funcionario.sexo, 
+                    funcionario.nascimento, 
+                    funcionario.cpf, 
+                    funcionario.email, 
+                    funcionario.telefone, 
+                    funcionario.senha,
+                    idPessoa
+                ]
+            })
+            queryDB({
+                query: `UPDATE funcionario
+                        SET
+                            cargo = ?,
+                            salario = ?,
+                            dataAdmissao = ?,
+                            dataPagamento = ?
+                        WHERE
+                            pessoa_idpessoa = ?;
+                    `,
+                values: [
+                    funcionario.cargo,
+                    funcionario.salario,
+                    funcionario.dataAdmissao,
+                    funcionario.dataPagamento, 
+                    idPessoa 
                 ]
             })
         }

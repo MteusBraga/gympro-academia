@@ -78,3 +78,46 @@ Content-Type: application/json
     "nome": "jiu-jitsu",
     "descricao": "Estilo de luta que visa a imobilização"
 }
+
+###
+DELETE http://localhost:3333/apagarUsuario
+Content-Type: application/json
+
+{
+    "idPessoa": "789"
+}
+
+###
+POST http://localhost:3333/editarCliente
+Content-Type: application/json
+
+{
+    "idpessoa": "10",
+    "nome": "Josimar Junior",
+    "sexo": "m",
+    "nascimento": "2003-11-23",
+    "cpf": "11111111111",
+    "email": "josimarjunior.cg@gmail.com",
+    "telefone": "888888888",
+    "senha": "junior123",
+    "plano_idplano": 4
+}
+
+###
+POST http://localhost:3333/editarFuncionario
+Content-Type: application/json
+
+{
+    "idpessoa": "21",
+    "nome": "Rainha da Caximbinha",
+    "sexo": "f",
+    "nascimento": "2000-10-10",
+    "cpf": "11131112111",
+    "email": "caximbinha@gmail.com",
+    "telefone": "888778888",
+    "senha": "caxumba",
+    "cargo": "zelador",
+    "salario": "600",
+    "dataAdmissao": "2020-10-10",
+    "dataPagamento": "2020-10-10"
+}

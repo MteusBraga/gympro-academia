@@ -1,11 +1,17 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import ExcluirConta from "@/components/excluirConta"
+import EditPlano from "@/components/editPlanoFuncionario"
 import style from "@/styles/listausuarios.module.css";
 import tabela from "@/styles/tabela.module.css";
 
 
 export default function Funcionario() {
+    const [objSelecionada, setObjSelecionada] = useState([])
+    const [pessoaSelecionada, setPessoaSelecionada] = useState({})
+    const [openModal, setOpenModal] = useState(false) /*Modal de excluir*/ 
+    const [openEdit, setOpenEdit] = useState(false) /*Modal de editar*/
     const router = useRouter()
     const [funcionario, setFuncionario] = useState([])
     useEffect(() => {
@@ -14,7 +20,6 @@ export default function Funcionario() {
 
     const trazerDados = async () => {
         const { data } = await axios.get('http://localhost:3333/listaFuncionario')
-        console.log(data)
         setFuncionario(data)
     }
 
@@ -51,8 +56,12 @@ export default function Funcionario() {
                 </div>
                 <div className={style.parteLista}>
                     <div className={style.containerLista}>
-                        <div>
+                        <div className={style.cimaTabela}>
                             <h1>FUNCIONÁRIOS</h1>
+                            <button className={style.adicionar} onClick={() => router.push('/dashboard/cadastroFuncionarios')}>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                                <p>Add Funcionários</p>
+                            </button>
                         </div>
                         <div className={tabela.container}>
                             <div className={tabela.barraFixa}>
@@ -77,45 +86,53 @@ export default function Funcionario() {
                                 const ano = dataObj.getFullYear();
                                 return `${dia}/${mes}/${ano}`;
                                 };
-                                    return (
-                                        <div className={tabela.barra}>
-                                            <p className={tabela.dados}>
-                                                {items.nome}
-                                            </p>
-                                            <p className={tabela.dados}>
-                                                {items.cargo}
-                                            </p>
-                                            <p className={tabela.dados}>
-                                                {items.salario}
-                                            </p>
-                                            <p className={tabela.dados}>
-                                                {items.sexo}
-                                            </p>
-                                            <p className={tabela.dados}>
-                                                {formatarData(items.nascimento)}
-                                            </p>
-                                            <p className={tabela.dados}>
-                                                {items.cpf}
-                                            </p>
-                                            <p className={tabela.dadosG}>
-                                                {items.email}
-                                            </p>
-                                            <p className={tabela.dados}>
-                                                {items.telefone}
-                                            </p>
-                                            <p className={tabela.dados}>
-                                                {formatarData(items.dataAdmissao)}
-                                            </p>
-                                            <p className={tabela.dados}>
-                                                {formatarData(items.dataPagamento).slice(0, 5)}
-                                            </p>
-                                            <div className={tabela.dadosEdit}>
-                                            <a><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pencil"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg></a>
-                                            <a><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash-2"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg></a>
-                                            </div>
+                                return (
+                                    <div className={tabela.barra}>
+                                        <p className={tabela.dados}>
+                                            {items.nome}
+                                        </p>
+                                        <p className={tabela.dados}>
+                                            {items.cargo}
+                                        </p>
+                                        <p className={tabela.dados}>
+                                            {items.salario}
+                                        </p>
+                                        <p className={tabela.dados}>
+                                            {items.sexo}
+                                        </p>
+                                        <p className={tabela.dados}>
+                                            {formatarData(items.nascimento)}
+                                        </p>
+                                        <p className={tabela.dados}>
+                                            {items.cpf}
+                                        </p>
+                                        <p className={tabela.dadosG}>
+                                            {items.email}
+                                        </p>
+                                        <p className={tabela.dados}>
+                                            {items.telefone}
+                                        </p>
+                                        <p className={tabela.dados}>
+                                            {formatarData(items.dataAdmissao)}
+                                        </p>
+                                        <p className={tabela.dados}>
+                                            {formatarData(items.dataPagamento).slice(0, 5)}
+                                        </p>
+                                        <div className={tabela.dadosEdit}>
+                                        <a onClick={() => {
+                                        setObjSelecionada(items)
+                                        setOpenEdit(true)
+                                        }}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pencil"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg></a>
+                                        <a onClick={()=> {
+                                            setPessoaSelecionada(items.idPessoa)
+                                            setOpenModal(true)
+                                            }}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash-2"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg></a>
                                         </div>
+                                    </div>
                                 )
                                 })}
+                                <ExcluirConta isOpen={openModal} setCloseModal={() => setOpenModal(!openModal)} idPessoa={pessoaSelecionada}/>
+                                <EditPlano isOpen={openEdit} setCloseEdit={() => setOpenEdit(!openEdit)} informacoes={objSelecionada} />
                         </div>
                     </div>
                 </div>

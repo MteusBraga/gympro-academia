@@ -7,6 +7,7 @@ const Autenticacao = require('./classes/autenticacao')
 const express = require('express');
 const cors = require('cors');
 const queryDB = require('./dbconnetion');
+const transactionDB = require('./transacao')
 const app = express();
 
 const cliente = new Cliente()
@@ -172,18 +173,22 @@ app.get('/financeiro', async (req, res)=>{
 
 app.get('/listaFuncionario', async (req, res)=>{
     const lista_funcionario = await queryDB({
-        query:`SELECT p.nome,
+        query:`SELECT
+        p.idpessoa AS idPessoa,
+        p.nome,
         f.cargo,
-        f.salario,   
+        f.salario,
         p.sexo,
         p.nascimento,
         p.cpf,
         p.email,
         p.telefone,
         f.dataAdmissao,
-        f.dataPagamento
-        FROM funcionario f
-        JOIN pessoa p ON f.pessoa_idpessoa = p.idpessoa;        
+        f.dataPagamento,
+        p.senha
+            FROM
+        funcionario f
+        JOIN pessoa p ON f.pessoa_idpessoa = p.idpessoa;
         `
     })
 
@@ -236,6 +241,32 @@ app.post('/listarDataCliente', async (req, res)=>{
     
 
     res.send(lista_funcionario)
+})
+
+app.post('/apagarUsuario', async (req, res) => {
+    const id = req.body.idPessoa
+    const query1 = `DELETE FROM treino WHERE cliente_idcliente IN (SELECT idcliente FROM cliente WHERE pessoa_idpessoa = '${id}');`;
+    const query2 = `DELETE FROM pagamento WHERE cliente_idcliente IN (SELECT idcliente FROM cliente WHERE pessoa_idpessoa = '${id}');`
+    const query3 = `DELETE FROM cliente WHERE pessoa_idpessoa = '${id}';`
+    const query4 = `DELETE FROM funcionario WHERE pessoa_idpessoa = '${id}';`
+    const query5 = `DELETE FROM pessoa WHERE idpessoa = '${id}';`
+
+    await transactionDB({query1:query1, query2:query2, query3:query3, query4:query4, query5:query5});
+    res.status(204).send()
+})
+
+app.post('/editarCliente', async (req, res) => {
+    console.log(req.body)
+    atendente.editarCliente(req.body)
+
+    res.status(204).send()
+})
+
+app.post('/editarFuncionario', async (req, res) => {
+    console.log(req.body)
+    gerente.editarFuncionario(req.body)
+
+    res.status(204).send()
 })
 
 app.post('/recuperarUsuario', async (req, res)=>{
