@@ -2,9 +2,26 @@ const Atendente = require("./atendente");
 const queryDB = require('../dbconnetion');
 const { randomUUID } = require('crypto')
 const FacadeFinanceiro = require('./facadeFinanceiro')
+const PlanoBuilder = require(`./planoBuilder`)
+const MensalBuilder = require('./planoBuilder')
+const TrimestralBuilder = require('./planoBuilder')
+const SemestralBuilder = require('./planoBuilder')
+const AnualBuilder = require('./planoBuilder')
 
 class Gerente extends Atendente{
     facadeFinanceiro = new FacadeFinanceiro()
+    planoBuilder = new PlanoBuilder()
+    constructor(builder){
+        this.builder = builder
+    }
+
+    async construirPlano(plano){
+        await this.builder.buildTipo(plano.tipo)
+        await this.builder.buildPacote()
+        await this.builder.buildValor(plano.valor, plano.desconto)
+        await this.builder.buildModalidades(plano.modalidade)
+    }
+    
 
     async obterFinancas(){
         await this.facadeFinanceiro.inicializarParametros()

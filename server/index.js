@@ -191,6 +191,10 @@ app.post('/recuperarUsuario', async (req, res)=>{
     res.send(user)
 })
 
+// app.post('/criarPlanos', async(req,res)=>{
+//     const g = new Gerente()
+// })
+
 app.listen(3333, ()=>{
     console.log('ligou menó')
 })

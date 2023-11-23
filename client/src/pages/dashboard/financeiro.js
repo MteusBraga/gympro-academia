@@ -167,6 +167,7 @@ export default function Financeiro(){
                         </div>
                     </div>
                     <Modalidade isOpen={openModal} setCloseModal={() => setOpenModal(!openModal)}/>
+
                     <Plano isOpen={openPlano} setClosePlano={() => setOpenPlano(!openPlano)}/>
                 </div>
             </div>

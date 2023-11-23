@@ -36,6 +36,7 @@ const BOTAO_STYLE = {
 
 export default function modal({isOpen, setClosePlano}) {
     useEffect(() => {AOS.init();}, [])
+
     const [modalidades, setModalidades] = useState([])
     const form = useForm()
     const { register, handleSubmit, setValue, getValues, reset } = useForm();
@@ -66,13 +67,16 @@ export default function modal({isOpen, setClosePlano}) {
           getModalidades();
     }, [])
 
+
     if(isOpen){
         return(
             <div style={BACKGROUND_STYLE}>
                 <div data-aos="zoom-in" data-aos-delay="150" className="mt-10 sm:mx-auto sm:w-full sm:max-w-lg bg-white p-5 rounded-lg m-5" style={MODAL_STYLE}>
                     <button data-aos="zoom-in" data-aos-delay="150" style={BOTAO_STYLE} onClick={() => {
+
                         console.log(selectedCheckboxes)
                         setSelectedCheckboxes([]);
+
                         setClosePlano()
                         reset()
                         }}>
@@ -87,6 +91,7 @@ export default function modal({isOpen, setClosePlano}) {
                         reset()
                         setClosePlano()
                     })}>
+
                     <div className="grid grid-cols-1 gap-x-8 gap-y-2 sm:grid-cols-2">
                         <div className="sm:col-span-2">
                             <label className="block text-sm font-medium leading-6 text-gray-900 mb-1">Nome</label>
@@ -132,6 +137,7 @@ export default function modal({isOpen, setClosePlano}) {
                         </div>
                         <button className="flex w-full justify-center rounded-full bg-red-600 px-1 py-2 mt-4 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-red-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 sm:col-span-2 w-24 m-auto" type="submit">submit</button>
                     </div>
+
                     </form>
                 </div>
             </div>

@@ -1,0 +1,503 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap');
+
+/* font-family: 'Outfit', sans-serif; */
+
+
+.body{
+    font-size: 100%;
+    background-image: url(../../public/background.png);   
+} 
+
+
+/* .imagem-backgroung{
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+} */
+
+.cabecalho{
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 16px;
+    height: 65px;
+    flex-shrink: 0; 
+}
+
+.cabecalhoIcon{
+    font-family: 'Outfit', sans-serif;
+    color: var(--branco);
+    font-weight: 700;
+    padding-top:90px;
+}
+
+.cabecalhoMenu{
+    display: flex;
+    gap: 32px;
+    padding-top:90px;
+}
+
+.cabecalhoMenuItem{
+    font-family: 'Outfit', sans-serif;
+    color: var(--branco);
+    font-weight: 400;
+    font-size: 16px; 
+    line-height: normal;
+    text-transform: uppercase; 
+}
+
+.conteudo{
+    margin-bottom: 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 90px;
+}
+
+.conteudoPrincipal{
+    display: flex;
+    flex-direction: row;
+    padding-top: 55px;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.conteudoPrincipalEscrito{
+    display: flex;
+    flex-direction:column;
+    gap: 32px;
+}
+
+.conteudoPrincipalEscritoTitulo{
+    color: var(--branco);
+    font-family: Outfit;
+    font-size: 75px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase; 
+}
+
+.conteudoPrincipalEscritoSubtitulo{
+    color: var(--branco);
+    font-family: Outfit;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal; 
+}
+
+.conteudoPrincipalImagem{
+    width: 408px;
+    height: 612px;
+    flex-shrink: 0; 
+}
+
+.conteudoPrincipalBotao{
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+    gap: 25px;
+}
+
+.conteudoPrincipalEscritoBotaoCad{
+    font-family: Outfit;
+    background-color: var(--bege);
+    color: var(--vermelho);
+    width: 255px;
+    height: 66px;
+    flex-shrink: 0; 
+    border-radius: 54px; 
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase; 
+
+}
+
+
+.conteudoPrincipalEscritoBotaoLog{
+    font-family: Outfit;
+    background-color: var(--vermelho);
+    border: 1px solid var(--branco);    
+    color: var(--branco);
+    width: 255px;
+    height: 66px;
+    flex-shrink: 0; 
+    border-radius: 54px; 
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase; 
+}
+
+.conteudoSecundario{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+
+.conteudoSecundarioIcon{
+    display: flex;
+    align-items: center;
+    padding-top: 100px;   
+
+}
+
+.conteudoSecundarioIcon img{
+    width: 45.183px;
+    height: 45.183px;
+    margin: 12px;
+}
+
+.conteudoTerceiro{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.conteudoTerceiroEscrito{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 110px;
+}
+
+.conteudoTerceiroEscritoTitulo{
+    color: var(--branco);
+    font-family: Outfit;
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal; 
+}
+
+
+.primeiroPlano, .segundoPlano, .terceiroPlano{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 10px;
+}
+
+.primeiroPlanoTitulo{
+    color: var(--branco);
+    font-family: Outfit;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase; 
+    text-align: left;
+    padding-top: 61px;
+}
+
+.primeiroPlanoConteudo{
+    background-color: #D9D9D9;
+    width: 339px;
+    height: 323px;
+    flex-shrink: 0; 
+    padding-top: 35px;
+    padding-left: 24px;
+}
+
+.primeiroPlanoConteudoTitulo{
+    color: var(--preto);
+    font-family: Outfit;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal; 
+}
+
+.primeiroPlanoConteudoPar{
+    color: var(--preto);
+    font-family: Outfit;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal; 
+    flex-shrink: 0; 
+    margin-top: 10.77px;
+}
+
+
+.assinarPlano1{
+    color: var(--preto);
+    font-family: Outfit;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal; 
+    background-color: var(--vermelho-claro); 
+    width: 194px;
+    height: 50px; 
+    flex-shrink: 0; 
+    border-radius: 54px; 
+    margin-left: 48px;
+    margin-top: 0px;  
+}
+
+
+.segundoPlanoTitulo{
+    color: var(--vermelho);
+    font-family: Outfit;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase; 
+    text-align: left;
+    padding-top: 61px;
+}
+
+.segundoPlanoConteudo{
+    background-color: var(--bege);
+    width: 339px;
+    height: 323px;
+    flex-shrink: 0; 
+    padding-top: 35px;
+    padding-left: 24px;
+}
+
+.segundoPlanoConteudoTitulo{
+    color: var(--vermelho);
+    font-family: Outfit;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal; 
+}
+
+.segundoPlanoConteudoPar{
+    color: var(--vermelho);
+    font-family: Outfit;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal; 
+    flex-shrink: 0; 
+    margin-top: 10.77px;
+}
+
+.assinarPlano2{
+    color: var(--branco);
+    font-family: Outfit;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal; 
+    background-color: var(--vermelho-claro); 
+    width: 194px;
+    height: 50px; 
+    flex-shrink: 0; 
+    border-radius: 54px; 
+    margin-left: 48px;
+    margin-top: 0px;  
+}
+
+.terceiroPlanoTitulo{
+    color: var(--amarelo);
+    font-family: Outfit;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase; 
+    text-align: left;
+    padding-top: 61px;
+}
+
+.terceiroPlanoConteudo{
+    background-color: var(--preto);
+    width: 339px;
+    height: 323px;
+    flex-shrink: 0; 
+    padding-top: 35px;
+    padding-left: 24px;
+}
+
+.terceiroPlanoConteudoTitulo{
+    color: var(--amarelo);
+    font-family: Outfit;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal; 
+}
+
+
+.terceiroPlanoConteudoPar{
+    color: var(--amarelo);
+    font-family: Outfit;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal; 
+    flex-shrink: 0; 
+    margin-top: 10.77px;
+}
+
+.assinarPlano3{
+    color: var(--preto);
+    font-family: Outfit;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal; 
+    background-color: var(--amarelo); 
+    width: 194px;
+    height: 50px; 
+    flex-shrink: 0; 
+    border-radius: 54px; 
+    margin-left: 48px;
+    margin-top: 0px;  
+}
+
+.conteudoQuarto{
+    display: flex;
+    flex-direction: row;
+    padding-top: 55px;
+    align-items: center;
+    justify-content: space-around;
+    width: 1189px;
+    padding-top: 167px;
+}
+
+
+.conteudoQuartoImagem{
+    width: 500px;
+    height: 333.252px; 
+}
+
+.conteudoQuartoEscrito{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 369px;     
+    gap: 28px;
+}
+
+.conteudoQuartoEscritoTitulo{
+    color: var(--branco);
+    font-family: Outfit;
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase; 
+}
+
+.conteudoQuartoEscritoParagrafo{
+    width: 491px;
+    height: 293px; 
+    color: var(--branco);
+    font-family: Outfit;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    text-align: justify;
+    line-height: normal; 
+}
+
+
+.conteudoQuinto{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 157px;
+}
+
+
+.conteudoQuintoTitulo{
+    color: var(--branco);
+    font-family: Outfit;
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase; 
+}
+
+.conteudoQuintoSubconteudo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.conteudoQuintoBox{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 61px;
+    margin-top: 68px;
+}
+
+.conteudoQuintoPerfil{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.conteudoQuintoPerfil img{
+    width: 124px;
+    height: 124px; 
+    border-radius: 50%;
+}
+
+.conteudoQuintoPerfil p{
+    color: var(--branco);
+    font-family: Outfit;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-top: 31px;
+    text-transform: uppercase; 
+}
+
+.conteudoQuintoIcons{
+    margin-top: 15px;
+}
+
+.conteudoQuintoBotao{
+    width: 166px;
+    height: 43px; 
+    border-radius: 40px;
+    background: #A106FF; 
+    color: var(--branco);
+    font-family: Outfit;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase; 
+    margin-top: 53px;
+}
+
+.rodape{
+    height: 171px; 
+    background-color: var(--preto);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.rodape p{
+    color: var(--branco);
+    font-family: Outfit;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal; 
+    margin-top: 76px;
+}
