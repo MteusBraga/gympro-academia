@@ -16,7 +16,7 @@
 }
 
 .telaFixa{
-    width: 300px;
+    width: 370px;
 }
 
 .parteGerente{
@@ -114,7 +114,7 @@
 
 @media screen and (max-width: 1400px){
     .telaFixa{
-        width: 75px;
+        width: 82px;
     }
 
     .parteGerente{
@@ -157,8 +157,17 @@
 
 .tabela{
     overflow: auto;
-    height: 300px;
+    max-height: 300px;
     max-width: 500px;
+}
+
+.tabelaAssociado{
+    overflow: auto;
+    height: 240px;
+}
+
+.tabelaAssociado table{
+    width: 450px;
 }
 
 .tabelaCabecalho{
@@ -276,44 +285,12 @@
     line-height: normal; 
 }
 
-.financeiros{
-    color: var(--vermelho-claro);
-    border: 1px solid var(--vermelho-claro);
-    font-family: Outfit;
-    font-size: 22px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal; 
-    width: 366px;
-    height: 163px;
-    border-radius: 18px;
-    padding: 22px;
-    margin: 10px;
-}
-
-.financeiros:hover{
-    color: var(--branco);
-    background-color: var(--vermelho-claro);
-    transition: 0.5s;
-}
-
-.financeiros H2{
-    margin-top: 26px;
-    font-size: 48px;
-}
-
-.topFinanceiro{
-    display: flex;
-    gap: 20px;
-    margin-top: 50px;
-}
-
 .containerTable{
     padding: 20px;
-}
-
-.tabelafinanceiro{
-    width: 500px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .dashboard{

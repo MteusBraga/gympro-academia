@@ -19,7 +19,7 @@ export default function CadastroFuncionario(){
         console.log(setSelectedValue(event.target.value))
     };
     return(
-        <main className=" h-screen flexdps items-center justify-center">
+        <main className="flexdps items-center justify-center">
             <div className="mt-7 m-5 sm:mx-auto sm:w-full sm:max-w-lg bg-white p-5 rounded-lg">
                 <button className={style.voltar} onClick={() => router.push('/dashboard/funcionarios')}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-arrow-left">

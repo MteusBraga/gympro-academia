@@ -36,8 +36,6 @@ const BOTAO_STYLE = {
 
 export default function modal({isOpen, setCloseModal}) {
     useEffect(() => {AOS.init();}, [])
-    const [planos, setPlanos] = useState([])
-    const [selectedValue, setSelectedValue] = useState('1')
     const form = useForm()
     const { register, handleSubmit, setValue, getValues, reset } = useForm();
 
