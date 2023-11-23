@@ -2,10 +2,12 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Modalidade from "@/components/cadastroModalidade"
+import Plano from "@/components/cadastroPlano"
 import style from "@/styles/listausuarios.module.css";
 
 export default function Financeiro(){
     const [openModal, setOpenModal] = useState(false)
+    const [openPlano, setOpenPlano] = useState(false)
     const [dados, setDados] = useState([])
     const router = useRouter()
 
@@ -146,6 +148,9 @@ export default function Financeiro(){
                     </div>
                     <button onClick={()=> setOpenModal(true)}>Criar Modalidade</button>
                     <Modalidade isOpen={openModal} setCloseModal={() => setOpenModal(!openModal)}/>
+
+                    <button onClick={()=> setOpenPlano(true)}>Criar Plano</button>
+                    <Plano isOpen={openPlano} setClosePlano={() => setOpenPlano(!openPlano)}/>
                 </div>
             </div>
         </main>
