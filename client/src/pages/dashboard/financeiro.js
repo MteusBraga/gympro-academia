@@ -2,10 +2,13 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Modalidade from "@/components/cadastroModalidade"
+import Plano from "@/components/cadastroPlano"
 import style from "@/styles/listausuarios.module.css";
+import financeiro from "@/styles/financeiro.module.css"
 
 export default function Financeiro(){
     const [openModal, setOpenModal] = useState(false)
+    const [openPlano, setOpenPlano] = useState(false)
     const [dados, setDados] = useState([])
     const router = useRouter()
 
@@ -51,101 +54,120 @@ export default function Financeiro(){
                     </div>
                 </div>
                 <div className={style.containerTable}>
-                    <h1>Financeiro</h1>
-                    <table>
-                        <thead>
+                    <h1 className={financeiro.titulo}>Financeiro</h1>
+                    <div className={financeiro.parteBlocos}>
+                        <div className={financeiro.blocoInd}>
+                            <h1> FATURAMENTO À VISTA </h1>
+                            <h2> R$ {dados.SomaValorVista} </h2>
+                        </div>
+                        <div className={financeiro.blocoInd}>
+                            <h1>FATURAMENTO PARCELADO  </h1>
+                            <h2> R$ {dados.SomaValorParcelado?.toFixed(2)} </h2>
+                        </div>
+                        <div className={financeiro.blocoInd}>
+                            <h1>FATURAMENTO LÍQUIDO </h1>
+                            <h2>R$ {dados.TotalLiquido}</h2>
+                        </div>
+                        <div className={financeiro.blocoInd}>
+                            <h1>TOTAL CLIENTES</h1>
+                            <h2> {dados.QuantidadeTotalClientes}</h2>
+                        </div>
+                    </div>
+                    <h1 className={financeiro.titulo}>Informações</h1>
+                    <div className={financeiro.tabelasFinanceiro}>
+                        <table>
+                            <thead>
                             <tr className={style.tabelaCabecalho}>
-                                <th className={style.cabecalho}>Nome do plano</th>
-                                <th className={style.cabecalho}>Quantidade Associados</th>
+                                <th className={style.cabecalho}>Clientes</th>
+                                <th className={style.cabecalho}>Quantidade</th>
                             </tr>
-                        </thead>
-                        <tbody>
-                        {dados.total_planos?.map(items => (
-                            <tr key={items.NomePlano} className={style.linha}>
-                                <td className={style.dados}>{items.NomePlano}</td>
-                                <td className={style.dadosNumber}>{items.QuantidadeAssociacoes}</td>
-                            </tr>
-                        ))}
-                        </tbody>
-                    </table>
-                    <div>
-                        <h1> FATURAMENTO À VISTA </h1>
-                        <h2> R$ {dados.SomaValorVista} </h2>
-                    </div>
-                    <div>
-                        <h1>FATURAMENTO PARCELADO  </h1>
-                        <h2> R$ {dados.SomaValorParcelado?.toFixed(2)} </h2>
-                    </div>
-
-                    <div>
-                        <h1>FATURAMENTO LÍQUIDO </h1>
-                        <h2>R$ { dados.TotalLiquido}</h2>
-                    </div>
-                    <div>
-                        <h1>TOTAL CLIENTES</h1>
-                        <h2> {dados.QuantidadeTotalClientes}</h2>
-                    </div>
-                    <table>
-                        <thead>
-                        <tr className={style.tabelaCabecalho}>
-                            <th className={style.cabecalho}>Clientes</th>
-                            <th className={style.cabecalho}>Quantidade</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            <tr className={style.linha}>
-                                <th className={style.cabecalho}>Homens</th>
-                                <td className={style.dadosNumber}>{dados.QuantidadeHomens}</td>
-                            </tr>
-                            <tr className={style.linha}>
-                                <th className={style.cabecalho}>Mulheres</th>
-                                <td className={style.dadosNumber}>{dados.QuantidadeMulheres}</td>
-                            </tr>
-                            <tr className={style.linha}>
-                                <th className={style.cabecalho}>Total</th>
-                                <td className={style.dadosNumber}>{dados.QuantidadeTotalClientes}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <h1>Informações</h1>
-                    <div className={style.tabela}>
-                        <table>
-                            <thead>
-                                <tr className={style.tabelaCabecalho}>
-                                    <th className={style.cabecalho}>Modalidade</th>
-                                    <th className={style.cabecalho}>Descrição</th>
-                                </tr>
                             </thead>
                             <tbody>
-                            {dados.modalidade?.map(items => (
-                                <tr key={items.nome} className={style.linha}>
-                                    <td className={style.dados}>{items.nome}</td>
-                                    <td className={style.dados}>{items.descricao}</td>
+                                <tr className={style.linha}>
+                                    <th className={style.cabecalho}>Homens</th>
+                                    <td className={style.dadosNumber}>{dados.QuantidadeHomens}</td>
                                 </tr>
-                            ))}
+                                <tr className={style.linha}>
+                                    <th className={style.cabecalho}>Mulheres</th>
+                                    <td className={style.dadosNumber}>{dados.QuantidadeMulheres}</td>
+                                </tr>
+                                <tr className={style.linha}>
+                                    <th className={style.cabecalho}>Total</th>
+                                    <td className={style.dadosNumber}>{dados.QuantidadeTotalClientes}</td>
+                                </tr>
                             </tbody>
                         </table>
+                        <div className={style.tabelaAssociado}>
+                            <table>
+                                <thead>
+                                    <tr className={style.tabelaCabecalho}>
+                                        <th className={style.cabecalho}>Nome do plano</th>
+                                        <th className={style.cabecalho}>Quantidade Associados</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {dados.total_planos?.map(items => (
+                                    <tr key={items.NomePlano} className={style.linha}>
+                                        <td className={style.dados}>{items.NomePlano}</td>
+                                        <td className={style.dadosNumber}>{items.QuantidadeAssociacoes}</td>
+                                    </tr>
+                                ))}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                    <div className={style.tabela}>
-                        <table>
-                            <thead>
-                                <tr className={style.tabelaCabecalho}>
-                                    <th className={style.cabecalho}>Plano</th>
-                                    <th className={style.cabecalho}>Modalidades Disponíveis</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            {dados.planosModalidade?.map(items => (
-                                <tr key={items.plano} className={style.linha}>
-                                    <td className={style.dados}>{items.plano}</td>
-                                    <td className={style.dados}>{items.modalidades}</td>
-                                </tr>
-                            ))}
-                            </tbody>
-                        </table>
+                    <div className={financeiro.tabelasInfo}>
+                        <div className={financeiro.tabelaContainer}>
+                            <button className={financeiro.botaoCriar} onClick={()=> setOpenModal(true)}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                            <p>CRIAR MODALIDADE</p>
+                            </button>
+                            <div className={style.tabela}>
+                                <table>
+                                    <thead>
+                                        <tr className={style.tabelaCabecalho}>
+                                            <th className={style.cabecalho}>Modalidade</th>
+                                            <th className={style.cabecalho}>Descrição</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {dados.modalidade?.map(items => (
+                                        <tr key={items.nome} className={style.linha}>
+                                            <td className={style.dados}>{items.nome}</td>
+                                            <td className={style.dados}>{items.descricao}</td>
+                                        </tr>
+                                    ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div className={financeiro.tabelaContainer}>
+                        <button className={financeiro.botaoCriar} onClick={()=> setOpenPlano(true)}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                        <p>CRIAR PLANO</p>
+                        </button>
+                            <div className={style.tabela}>
+                                <table>
+                                    <thead>
+                                        <tr className={style.tabelaCabecalho}>
+                                            <th className={style.cabecalho}>Plano</th>
+                                            <th className={style.cabecalho}>Modalidades Disponíveis</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {dados.planosModalidade?.map(items => (
+                                        <tr key={items.plano} className={style.linha}>
+                                            <td className={style.dados}>{items.plano}</td>
+                                            <td className={style.dados}>{items.modalidades}</td>
+                                        </tr>
+                                    ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
-                    <button onClick={()=> setOpenModal(true)}>Criar Modalidade</button>
                     <Modalidade isOpen={openModal} setCloseModal={() => setOpenModal(!openModal)}/>
+                    <Plano isOpen={openPlano} setClosePlano={() => setOpenPlano(!openPlano)}/>
                 </div>
             </div>
         </main>

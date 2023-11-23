@@ -16,8 +16,8 @@ export default function Login({ children }) {
     }
 
     return (
-        <main className=" h-screen flexdps items-center justify-center">
-            <div className="mt-7 m-5 sm:mx-auto sm:w-full sm:max-w-lg bg-white p-5 rounded-lg">
+        <main className="flexdps items-center justify-center">
+            <div className= "mt-7 m-5 sm:mx-auto sm:w-full sm:max-w-lg bg-white p-5 rounded-lg">
                 <h2 className="mt-2 mb-2 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">LOGIN</h2>
                 <form className="flex  flex-col" onSubmit={handleSubmit(handleSignIn)} >
                     <label className="block text-sm font-medium leading-6 text-gray-900 mb-1">Email</label>

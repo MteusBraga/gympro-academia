@@ -121,3 +121,6 @@ Content-Type: application/json
     "dataAdmissao": "2020-10-10",
     "dataPagamento": "2020-10-10"
 }
+
+###
+GET http://localhost:3333/modalidades 
