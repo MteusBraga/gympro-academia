@@ -11,9 +11,11 @@ const AnualBuilder = require('./planoBuilder')
 class Gerente extends Atendente{
     facadeFinanceiro = new FacadeFinanceiro()
     planoBuilder = new PlanoBuilder()
-    constructor(builder){
-        this.builder = builder
-    }
+
+    // constructor(builder){
+    //     this.builder = builder
+    // }
+
 
     async construirPlano(plano){
         await this.builder.buildTipo(plano.tipo)

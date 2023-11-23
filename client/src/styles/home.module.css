@@ -6,6 +6,7 @@
 .body{
     font-size: 100%;
     background-image: url(../../public/background.png);   
+    background-size: cover;
 } 
 
 
@@ -30,6 +31,7 @@
     color: var(--branco);
     font-weight: 700;
     padding-top:90px;
+    cursor: pointer;
 }
 
 .cabecalhoMenu{
@@ -44,7 +46,13 @@
     font-weight: 400;
     font-size: 16px; 
     line-height: normal;
-    text-transform: uppercase; 
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.6s;
+}
+
+.cabecalhoMenuItem:hover{
+    transform: scale(1.1);
 }
 
 .conteudo{
@@ -242,7 +250,8 @@
     flex-shrink: 0; 
     border-radius: 54px; 
     margin-left: 48px;
-    margin-top: 0px;  
+    margin-top: 0px; 
+    cursor: pointer;
 }
 
 
