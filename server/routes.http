@@ -124,3 +124,17 @@ Content-Type: application/json
 
 ###
 GET http://localhost:3333/modalidades 
+
+###
+POST http://localhost:3333/criarPlanos
+Content-Type: application/json
+
+{
+    "tipo": "testeBafo",
+    "valor": "90",
+    "desconto": "5",
+    "modalidades": ["1", "2", "3"]
+}
+
+###
+GET http://localhost:3333/listaPlano?search=Master  

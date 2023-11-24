@@ -78,6 +78,52 @@ class Gerente extends Atendente{
         inserir()
     }
 
+    async createPlano(plano) {
+        const pacoteM = 'Mensal';
+        const pacoteT = 'Trimestral';
+        const pacoteS = 'Semestral';
+        const pacoteA = 'Anual';
+    
+        const tipo = plano.tipo;
+        const valor = plano.valor;
+        const desconto = plano.desconto;
+        const modalidades = plano.modalidades;
+    
+        async function inserir(pacote, meses, multiplicador, idmodalidades) {
+            const valorCalculado = (valor * meses) * (1 - (desconto * multiplicador / 100));
+    
+            const {insertId} = await queryDB({
+                query: `
+                    INSERT INTO plano (tipo, pacote, valor)
+                    VALUES (?, ?, ?);
+                `,
+                values: [tipo, pacote, valorCalculado],
+            });
+
+            for(let i = 0; i < idmodalidades.length; i++){
+                await queryDB({
+                    query: `
+                        INSERT INTO vinc_plano_modalidade (plano_idplano, modalidade_idmodalidade)
+                        VALUES (?, ?);
+                    `,
+                    values: [insertId, idmodalidades[i]],
+                });
+            }
+        }
+    
+        try {
+            await inserir(pacoteM, 1, 0, modalidades);
+            await inserir(pacoteT, 3, 1, modalidades);
+            await inserir(pacoteS, 6, 2, modalidades);
+            await inserir(pacoteA, 12, 3, modalidades);
+    
+            console.log('Inserções concluídas com sucesso');
+        } catch (error) {
+            console.error('Erro ao inserir dados no banco de dados:', error);
+            throw error; // Rejeita a promise para indicar falha na execução da função
+        }
+    }
+
     async editarFuncionario(funcionario){     
         const idPessoa = funcionario.idpessoa
 

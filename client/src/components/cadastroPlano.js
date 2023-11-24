@@ -73,10 +73,8 @@ export default function modal({isOpen, setClosePlano}) {
             <div style={BACKGROUND_STYLE}>
                 <div data-aos="zoom-in" data-aos-delay="150" className="mt-10 sm:mx-auto sm:w-full sm:max-w-lg bg-white p-5 rounded-lg m-5" style={MODAL_STYLE}>
                     <button data-aos="zoom-in" data-aos-delay="150" style={BOTAO_STYLE} onClick={() => {
-
                         console.log(selectedCheckboxes)
                         setSelectedCheckboxes([]);
-
                         setClosePlano()
                         reset()
                         }}>
@@ -84,12 +82,15 @@ export default function modal({isOpen, setClosePlano}) {
                     </button>
                     <h2 data-aos="zoom-in" data-aos-delay="150" className="mt-5 mb-8 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">CADASTRO PLANO</h2>
                     <form data-aos="zoom-in" data-aos-delay="150" className="flex flex-col gap-3" action="submit" onSubmit={handleSubmit(async (data)=>{
-                        await axios.post('http://localhost:3333/cadastroModalidade', {
-                            nome: data.nome,
-                            descricao: data.descricao
+                        await axios.post('http://localhost:3333/criarPlanos', {
+                            tipo: data.nome,
+                            valor: data.valor,
+                            desconto: data.desconto,
+                            modalidades: selectedCheckboxes
                         })
-                        reset()
+                        setSelectedCheckboxes([]);
                         setClosePlano()
+                        reset()
                     })}>
 
                     <div className="grid grid-cols-1 gap-x-8 gap-y-2 sm:grid-cols-2">
