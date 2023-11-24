@@ -5,6 +5,7 @@ import ExcluirConta from "@/components/excluirConta"
 import EditPlano from "@/components/editPlanoCliente"
 import style from "@/styles/listausuarios.module.css";
 import tabela from "@/styles/tabela.module.css";
+import { ProxyCacheCliente } from "@/classes/cliente";
 
 export default function Clientes(){
     const [objSelecionada, setObjSelecionada] = useState([])
@@ -14,18 +15,16 @@ export default function Clientes(){
     const router = useRouter()
     const [clientes, setClientes] = useState([])
     useEffect(()=>{
-        trazerDados()
+        // trazerDados()
+        setDados()
     }, [])
 
-    const trazerDados = async ()=> {
-        const { data } = await axios.get('http://localhost:3333/listaCliente')
-        // Mapeia os dados e formata a data de nascimento
-        const clientesFormatados = data.map(item => ({
-            ...item,
-            DataNascimento: new Date(item.DataNascimento).toLocaleDateString()
-        }));
-        setClientes(clientesFormatados);
-    }
+    const setDados = async () => {
+        const proxyCliente = new ProxyCacheCliente();
+        const c = await proxyCliente.trazerDados();
+    
+        setClientes(c);
+      };
     
     return(
         <main className="text-black">
@@ -79,7 +78,7 @@ export default function Clientes(){
                                 <p>Pacote</p>
                                 <p>Ações</p>
                             </div>
-                            {clientes.map((items)=>(
+                            {clientes?.map((items)=>(
                             <div className={tabela.barra}>
                                 <p className={tabela.dados}>
                                     {items.nome}

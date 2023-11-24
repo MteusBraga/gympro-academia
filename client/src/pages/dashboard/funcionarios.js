@@ -5,6 +5,7 @@ import ExcluirConta from "@/components/excluirConta"
 import EditPlano from "@/components/editPlanoFuncionario"
 import style from "@/styles/listausuarios.module.css";
 import tabela from "@/styles/tabela.module.css";
+import { ProxyCacheFuncionario } from "@/classes/funcionario";
 
 
 export default function Funcionario() {
@@ -14,14 +15,17 @@ export default function Funcionario() {
     const [openEdit, setOpenEdit] = useState(false) /*Modal de editar*/
     const router = useRouter()
     const [funcionario, setFuncionario] = useState([])
-    useEffect(() => {
-        trazerDados()
+    useEffect(()=>{
+        // trazerDados()
+        setDados()
     }, [])
 
-    const trazerDados = async () => {
-        const { data } = await axios.get('http://localhost:3333/listaFuncionario')
-        setFuncionario(data)
-    }
+    const setDados = async () => {
+        const proxyFuncionario = new ProxyCacheFuncionario();
+        const c = await proxyFuncionario.trazerDados();
+    
+        setFuncionario(c);
+    };
 
     return (
         <main className="text-black">
