@@ -44,6 +44,8 @@ export default function modal({isOpen, setCloseModal, idPessoa}){
                         await axios.post('http://localhost:3333/apagarUsuario', {
                             idPessoa:idPessoa
                         })
+                        localStorage.removeItem("clientesFormatados")
+                        localStorage.removeItem("funcionarios")
                         setCloseModal()
                         router.reload()
                     })}>

@@ -101,6 +101,7 @@ export default function edit({isOpen, setCloseEdit, informacoes}){
                             dataAdmissao: data.admissao,
                             dataPagamento: data.pagamento
                         })
+                        localStorage.removeItem("funcionarios")
                         setCloseEdit()
                         router.reload()
                     })}>

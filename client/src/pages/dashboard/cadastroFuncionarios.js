@@ -48,6 +48,7 @@ export default function CadastroFuncionario(){
                         dataAdmissao: data.admissao,
                         dataPagamento: data.pagamento
                     })
+                    localStorage.removeItem("funcionarios")
                     reset();
                 })}>
                     <div className="grid grid-cols-1 gap-x-8 gap-y-2 sm:grid-cols-2">

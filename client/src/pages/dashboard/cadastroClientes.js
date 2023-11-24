@@ -54,6 +54,7 @@ export default function CadastroClientes (){
                         senha: data.senha,
                         plano_idplano: selectedValue
                     })
+                    localStorage.removeItem("clientesFormatados")
                     reset();
                 })}>
                     <div className="grid grid-cols-1 gap-x-8 gap-y-2 sm:grid-cols-2">

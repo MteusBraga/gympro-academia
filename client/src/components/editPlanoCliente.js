@@ -110,6 +110,7 @@ export default function edit({isOpen, setCloseEdit, informacoes}){
                             senha: data.senha,
                             plano_idplano: selectedValue
                         })
+                        localStorage.removeItem("clientesFormatados")
                         setCloseEdit()
                         router.reload()
                     })}>
