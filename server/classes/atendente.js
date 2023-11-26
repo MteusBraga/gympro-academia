@@ -63,7 +63,15 @@ class Atendente extends Funcionario{
 
     async createCliente(cliente){
         const pessoaId = randomUUID()
-        
+        const formaPagamento = "Boleto"
+        const dataAtual = new Date();
+        var ano = dataAtual.getFullYear();
+        var mes = dataAtual.getMonth() + 1;
+        var dia = dataAtual.getDate();
+        var dataFormatada = ano + '-' + (mes < 10 ? '0' : '') + mes + '-' + (dia < 10 ? '0' : '') + dia;
+        console.log(dataFormatada);
+        const idPlano = cliente.plano_idplano
+
         async function inserir(){
             await queryDB({
                 query: 'insert into pessoa (idpessoa, nome, sexo, nascimento, cpf, telefone, email, senha) values (?, ?, ?, ?, ?, ?, ?, ?)',
@@ -78,11 +86,22 @@ class Atendente extends Funcionario{
                     cliente.senha
                 ]
             })
-            queryDB({
+
+            const {insertId} = await queryDB({
                 query: 'insert into cliente (plano_idplano, pessoa_idpessoa) values(?, ?)',
                 values: [
-                    cliente.plano_idplano, 
+                    idPlano, 
                     pessoaId 
+                ]
+            })
+
+            queryDB({
+                query: 'INSERT INTO pagamento (formaPagamento, dataPagamento, cliente_idcliente, plano_idplano) VALUES (?, ?, ?, ?)',
+                values: [
+                    formaPagamento,
+                    dataFormatada,
+                    insertId,
+                    idPlano
                 ]
             })
         }
