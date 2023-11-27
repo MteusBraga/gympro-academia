@@ -10,7 +10,7 @@ import axios from 'axios'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
-export default function Login({ children }) {
+export default function Login() {
     const router = useRouter()
     const { register, handleSubmit } = useForm();
     const { signIn } = useContext(AuthContext) 
@@ -18,6 +18,7 @@ export default function Login({ children }) {
     useEffect(() => {AOS.init();}, [])
 
     async function handleSignIn(data) {
+        console.log(data)
         await signIn(data)
     }
 
