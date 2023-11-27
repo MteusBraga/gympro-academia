@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form"
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -35,6 +36,7 @@ const BOTAO_STYLE = {
 }
 
 export default function modal({isOpen, setClosePlano}) {
+    const router = useRouter()
     useEffect(() => {AOS.init();}, [])
 
     const [modalidades, setModalidades] = useState([])
@@ -91,6 +93,7 @@ export default function modal({isOpen, setClosePlano}) {
                         setSelectedCheckboxes([]);
                         setClosePlano()
                         reset()
+                        router.reload()
                     })}>
 
                     <div className="grid grid-cols-1 gap-x-8 gap-y-2 sm:grid-cols-2">

@@ -8,11 +8,11 @@ class Funcionario extends Usuario{
         const result = await queryDB({
             query:`
             select 
-                pessoa.* , Funcionario.* 
+                pessoa.* , funcionario.* 
             from 
-                pessoa inner join Funcionario 
+                pessoa inner join funcionario 
             on 
-                pessoa.idpessoa = Funcionario.pessoa_idpessoa
+                pessoa.idpessoa = funcionario.pessoa_idpessoa
             where 
                 email = ? and senha = ?;`,
             values: [email, senha]
@@ -26,11 +26,11 @@ class Funcionario extends Usuario{
         const result = await queryDB({
             query:`
             select 
-                pessoa.* , Funcionario.* 
+                pessoa.* , funcionario.* 
             from 
-                pessoa inner join Funcionario 
+                pessoa inner join funcionario 
             on 
-                pessoa.idpessoa = Funcionario.pessoa_idpessoa
+                pessoa.idpessoa = funcionario.pessoa_idpessoa
             where 
                 idpessoa = ?`,
             values: [token]

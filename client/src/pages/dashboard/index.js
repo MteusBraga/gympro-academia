@@ -23,7 +23,7 @@ export default function Dashboard(retorno){
                     }}>Financeiro</button>
                     <button className="text-white bg-red-500 text-lg font-bold  p-[20px] rounded-md" onClick={()=>{
                         router.push('/dashboard/funcionarios')
-                    }}>Funcinarios</button>
+                    }}>Funcinários</button>
                     <button className="text-white bg-red-500 text-lg font-bold  p-[20px] rounded-md" onClick={()=>{
                         router.push('/dashboard/clientes')
                     }}>Clientes</button>

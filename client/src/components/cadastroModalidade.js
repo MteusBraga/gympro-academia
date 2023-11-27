@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form"
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -35,6 +36,7 @@ const BOTAO_STYLE = {
 }
 
 export default function modal({isOpen, setCloseModal}) {
+    const router = useRouter()
     useEffect(() => {AOS.init();}, [])
     const form = useForm()
     const { register, handleSubmit, setValue, getValues, reset } = useForm();
@@ -57,6 +59,7 @@ export default function modal({isOpen, setCloseModal}) {
                         })
                         reset()
                         setCloseModal()
+                        router.reload()
                     })}>
                     <div>
                         <label className="block text-sm font-medium leading-6 text-gray-900 mb-1">Nome</label>
