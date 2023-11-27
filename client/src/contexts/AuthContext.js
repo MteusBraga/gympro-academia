@@ -27,7 +27,7 @@ export function AuthProvider({ children }){
             senha: senha
         })
 
-
+        console.log(data)
         if(!data){
             window.alert('email invalido')
         }else{

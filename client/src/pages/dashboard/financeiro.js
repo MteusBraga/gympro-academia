@@ -1,18 +1,24 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Modalidade from "@/components/cadastroModalidade"
 import Plano from "@/components/cadastroPlano"
 import style from "@/styles/listausuarios.module.css";
 import financeiro from "@/styles/financeiro.module.css"
+import { useContext, useEffect, useState } from "react";
+import { destroyCookie, parseCookies } from "nookies"
+import { AuthContext } from "@/contexts/AuthContext";
 
 export default function Financeiro(){
     const [openModal, setOpenModal] = useState(false)
     const [openPlano, setOpenPlano] = useState(false)
     const [dados, setDados] = useState([])
+
+    const { user, signOut} = useContext(AuthContext)
+
     const router = useRouter()
 
     useEffect(()=>{
+        console.log(user)
         trazerDados()
     }, [])
 
@@ -31,7 +37,7 @@ export default function Financeiro(){
                             <svg className={style.icon} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                                 <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/>
                             </svg>
-                            <h1>USERNAME</h1>
+                            <h1>{user?.nome}</h1>
                         </div>
                         <div className={style.divgerente}>
                             <button onClick={() => router.push('/dashboard/clientes')}>
@@ -173,4 +179,21 @@ export default function Financeiro(){
             </div>
         </main>
     )
+}
+
+export async function getServerSideProps(ctx){
+    const { ['gympro-token']: token } = parseCookies(ctx)
+    if(!token){
+        return{
+            redirect:{
+                destination: '/',
+                permanent: false,
+            }
+        }
+    }
+    return {
+        props:{
+            
+        }
+    }
 }

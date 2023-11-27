@@ -1,11 +1,13 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import ExcluirConta from "@/components/excluirConta"
 import EditPlano from "@/components/editPlanoFuncionario"
 import style from "@/styles/listausuarios.module.css";
 import tabela from "@/styles/tabela.module.css";
 import { ProxyCacheFuncionario } from "@/classes/funcionario";
+import { useContext, useEffect, useState } from "react";
+import { destroyCookie, parseCookies } from "nookies"
+import { AuthContext } from "@/contexts/AuthContext";
 
 
 export default function Funcionario() {
@@ -15,6 +17,9 @@ export default function Funcionario() {
     const [openEdit, setOpenEdit] = useState(false) /*Modal de editar*/
     const router = useRouter()
     const [funcionario, setFuncionario] = useState([])
+
+    const { user, signOut} = useContext(AuthContext)
+
     useEffect(()=>{
         // trazerDados()
         setDados()
@@ -36,7 +41,7 @@ export default function Funcionario() {
                             <svg className={style.icon} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                                 <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/>
                             </svg>
-                            <h1>USERNAME</h1>
+                            <h1>{user?.nome}</h1>
                         </div>
                         <div className={style.divgerente}>
                             <button onClick={() => router.push('/dashboard/clientes')}>
@@ -143,4 +148,21 @@ export default function Funcionario() {
             </div>
         </main>
     )
+}
+
+export async function getServerSideProps(ctx){
+    const { ['gympro-token']: token } = parseCookies(ctx)
+    if(!token){
+        return{
+            redirect:{
+                destination: '/',
+                permanent: false,
+            }
+        }
+    }
+    return {
+        props:{
+            
+        }
+    }
 }
