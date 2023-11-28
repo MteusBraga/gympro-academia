@@ -136,18 +136,6 @@ class Atendente extends Funcionario{
                     idPessoa
                 ]
             })
-            queryDB({
-                query: `UPDATE cliente
-                        SET
-                            plano_idplano = ?
-                        WHERE
-                            pessoa_idpessoa = ?;
-                    `,
-                values: [
-                    cliente.plano_idplano, 
-                    idPessoa 
-                ]
-            })
         }
         inserir()
     }

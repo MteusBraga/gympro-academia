@@ -161,6 +161,12 @@
     max-width: 500px;
 }
 
+.tabelaPlanoVencido{
+    overflow: auto;
+    max-height: 300px;
+    max-width: 1000px;
+}
+
 .tabelaAssociado{
     overflow: auto;
     height: 240px;

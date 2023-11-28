@@ -100,7 +100,6 @@ Content-Type: application/json
     "email": "josimarjunior.cg@gmail.com",
     "telefone": "888888888",
     "senha": "junior123",
-    "plano_idplano": 4
 }
 
 ###
@@ -108,7 +107,7 @@ POST http://localhost:3333/editarFuncionario
 Content-Type: application/json
 
 {
-    "idpessoa": "21",
+    "idpessoa": "22",
     "nome": "Rainha da Caximbinha",
     "sexo": "f",
     "nascimento": "2000-10-10",
@@ -116,8 +115,8 @@ Content-Type: application/json
     "email": "caximbinha@gmail.com",
     "telefone": "888778888",
     "senha": "caxumba",
-    "cargo": "zelador",
-    "salario": "600",
+    "cargo": "atendente",
+    "salario": "800",
     "dataAdmissao": "2020-10-10",
     "dataPagamento": "2020-10-10"
 }
@@ -137,4 +136,4 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3333/listaPlano?search=Master  
+GET http://localhost:3333/planosVencidos

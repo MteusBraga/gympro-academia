@@ -85,7 +85,7 @@ export default function edit({isOpen, setCloseEdit, informacoes}){
                         }}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-circle"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>
                     </button>
-                    <h2 data-aos="zoom-in" data-aos-delay="150" className="mt-2 mb-2 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">CADASTRO FUNCIONÁRIO</h2>
+                    <h2 data-aos="zoom-in" data-aos-delay="150" className="mt-2 mb-2 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">EDITAR FUNCIONÁRIO</h2>
                     <form data-aos="zoom-in" data-aos-delay="150" className="flex flex-col" action="submit" onSubmit={handleSubmit(async (data)=>{
                         await axios.post('http://localhost:3333/editarFuncionario', {
                             idpessoa: informacoes.idPessoa,

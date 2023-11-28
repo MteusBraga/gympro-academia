@@ -5,6 +5,14 @@
     margin: 0px 20px 10px 20px;
 }
 
+.subtitulo{
+    font-weight: bold;
+    text-align: center;
+    font-size: 28px;
+    font-family: Outfit;
+    margin: 0px 20px 10px 20px;
+}
+
 .blocoInd{
     padding: 10px;
     color: var(--branco);
@@ -42,7 +50,7 @@
     justify-content: space-between;
     flex-wrap: wrap;
     margin: 10px;
-    max-width: 980px;
+    max-width: 1000px;
 }
 
 .tabelasFinanceiro > table{
@@ -52,6 +60,10 @@
 
 .tabelasFinanceiro table{
     margin: 10px;
+}
+
+.parteVencido{
+    margin: auto;
 }
 
 .tabelasInfo{
@@ -88,4 +100,25 @@
     background-color: transparent;
     color: var(--vermelho-claro);
     border: 1px solid var(--vermelho-claro);
+}
+
+.dadosEdit{
+    padding: 5px 10px;
+    color: rgb(63, 63, 63);
+    border: 0.1px solid rgb(128, 126, 126);
+    display: flex;
+    align-content: space-between;
+    gap: 15px;
+}
+
+.dadosEdit a{
+    cursor: pointer;
+}
+
+.dadosEdit a:hover{
+    color: rgb(37, 37, 37);
+}
+
+.dadosEdit a:active{
+    color: var(--vermelho-claro);
 }

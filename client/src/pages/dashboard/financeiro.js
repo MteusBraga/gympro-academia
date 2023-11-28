@@ -25,7 +25,6 @@ export default function Financeiro(){
     const trazerDados = async ()=>{
         const { data } = await axios.get('http://localhost:3333/financeiro')
         setDados(data)
-        console.log(dados.TotalLiquido)
     }
     
     return(
@@ -121,6 +120,46 @@ export default function Financeiro(){
                                 </tbody>
                             </table>
                         </div>
+                        <div className={financeiro.parteVencido}>
+                            <h2 className={financeiro.subtitulo}>Clientes com planos vencidos</h2>
+                            <div className={style.tabelaPlanoVencido}>
+                                <table>
+                                    <thead>
+                                        <tr className={style.tabelaCabecalho}>
+                                            <th className={style.cabecalho}>Nome</th>
+                                            <th className={style.cabecalho}>Plano</th>
+                                            <th className={style.cabecalho}>Pacote</th>
+                                            <th className={style.cabecalho}>Data Pagamento</th>
+                                            <th className={style.cabecalho}>Dias Vencido</th>
+                                            <th className={style.cabecalho}>Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {dados.planosVencidos?.map(items => {     
+                                        const formatarData = (data) => {
+                                        const dataObj = new Date(data);
+                                        const dia = dataObj.getDate().toString().padStart(2, '0');
+                                        const mes = (dataObj.getMonth() + 1).toString().padStart(2, '0');
+                                        const ano = dataObj.getFullYear();
+                                        return `${dia}/${mes}/${ano}`;
+                                        };        
+                                        return (
+                                            <tr key={items.idCliente} className={style.linha}>
+                                                <td className={style.dados}>{items.nome}</td>
+                                                <td className={style.dados}>{items.tipoPlano}</td>
+                                                <td className={style.dados}>{items.pacotePlano}</td>
+                                                <td className={style.dadosNumber}>{formatarData(items.dataPagamento)}</td>
+                                                <td className={style.dadosNumber}>{items.diasVencimento}</td>
+                                                <td className={financeiro.dadosEdit}>
+                                                    <a><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rotate-ccw"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg></a>
+                                                    <a><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash-2"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg></a>
+                                                </td>
+                                            </tr>
+                                        )})}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                     <div className={financeiro.tabelasInfo}>
                         <div className={financeiro.tabelaContainer}>
@@ -148,10 +187,10 @@ export default function Financeiro(){
                             </div>
                         </div>
                         <div className={financeiro.tabelaContainer}>
-                        <button className={financeiro.botaoCriar} onClick={()=> setOpenPlano(true)}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
-                        <p>CRIAR PLANO</p>
-                        </button>
+                            <button className={financeiro.botaoCriar} onClick={()=> setOpenPlano(true)}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                            <p>CRIAR PLANO</p>
+                            </button>
                             <div className={style.tabela}>
                                 <table>
                                     <thead>

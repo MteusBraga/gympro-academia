@@ -30,7 +30,8 @@ class FacadeFinanceiro{
             ...this.informacoes.qtdClientes[0],
             ...this.informacoes.qtdClientesGenero[0],
             modalidade:this.informacoes.modalidades,
-            planosModalidade:this.informacoes.planosModalidade
+            planosModalidade:this.informacoes.planosModalidade,
+            planosVencidos:this.informacoes.planosVencidos
         }
         return concat
     }

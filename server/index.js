@@ -112,23 +112,7 @@ app.get('/listaFuncionario', async (req, res)=>{
 
 app.get('/listaCliente', async (req, res)=>{
     const search = req.query.search
-    // console.log(`Search:  ${search}`)
     const clientes = await atendente.listarClientes(search)
-
-    // const lista_funcionario = await queryDB({
-    //     query:`SELECT p.nome AS nome,
-    //     p.sexo AS sexo,
-    //     p.nascimento AS DataNascimento,
-    //     p.cpf AS cpf,
-    //     p.email AS email,
-    //     p.telefone AS telefone,
-    //     pl.tipo AS TipoPlano,
-    //     pl.pacote AS PacotePlano
-    //     FROM cliente c
-    //     JOIN pessoa p ON c.pessoa_idpessoa = p.idpessoa
-    //     JOIN plano pl ON c.plano_idplano = pl.idplano;
-    //     `
-    // })
     res.send(clientes)
 })
 
@@ -200,4 +184,58 @@ app.post('/criarPlanos', async(req,res)=>{
 
 app.listen(3333, ()=>{
     console.log('ligou menó')
+})
+
+app.get('/planosVencidos', async (req, res)=>{
+    const result = await queryDB({
+        query:`SELECT
+        c.idcliente AS idCliente,
+        p.nome,
+        pl.tipo AS tipoPlano,
+        pl.pacote AS pacotePlano,
+        lastPayment.dataPagamento,
+        CASE
+            WHEN pl.pacote = 'Anual' THEN DATEDIFF(CURDATE(), lastPayment.dataPagamento) - 365
+            WHEN pl.pacote = 'Semestral' THEN DATEDIFF(CURDATE(), lastPayment.dataPagamento) - 183
+            WHEN pl.pacote = 'Trimestral' THEN DATEDIFF(CURDATE(), lastPayment.dataPagamento) - 91
+            WHEN pl.pacote = 'Mensal' THEN DATEDIFF(CURDATE(), lastPayment.dataPagamento) - 30
+            ELSE DATEDIFF(CURDATE(), lastPayment.dataPagamento) -- Trate outros casos conforme necessário
+        END AS diasVencimento
+    FROM
+        cliente c
+    JOIN
+        pessoa p ON c.pessoa_idpessoa = p.idpessoa
+    JOIN
+        plano pl ON c.plano_idplano = pl.idplano
+    JOIN
+        (
+            SELECT
+                p.idpagamento,
+                p.formaPagamento,
+                p.dataPagamento,
+                p.cliente_idcliente
+            FROM
+                pagamento p
+            WHERE
+                (p.cliente_idcliente, p.dataPagamento) IN (
+                    SELECT
+                        cliente_idcliente,
+                        MAX(dataPagamento) AS dataPagamento
+                    FROM
+                        pagamento
+                    GROUP BY
+                        cliente_idcliente
+                )
+        ) AS lastPayment ON c.idcliente = lastPayment.cliente_idcliente
+    WHERE
+        (
+            (pl.pacote = 'Anual' AND DATEDIFF(CURDATE(), lastPayment.dataPagamento) > 365) OR
+            (pl.pacote = 'Semestral' AND DATEDIFF(CURDATE(), lastPayment.dataPagamento) > 183) OR
+            (pl.pacote = 'Trimestral' AND DATEDIFF(CURDATE(), lastPayment.dataPagamento) > 91) OR
+            (pl.pacote = 'Mensal' AND DATEDIFF(CURDATE(), lastPayment.dataPagamento) > 30)
+        );
+    `
+    })
+
+    res.send(result)
 })

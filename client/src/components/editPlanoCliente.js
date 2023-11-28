@@ -38,23 +38,9 @@ import 'aos/dist/aos.css';
 
 export default function edit({isOpen, setCloseEdit, informacoes}){
     const router = useRouter()
-    const [planos, setPlanos] = useState([])
     const [selectedValue, setSelectedValue] = useState();
     const { register, handleSubmit, setValue, getValues, reset } = useForm();
     useEffect(() => {AOS.init();}, [])
-
-    useEffect(()=>{
-        const getPlanos = async () => {
-            try{
-                const { data } = await axios.get('http://localhost:3333/planos');
-                setPlanos(data)
-            }catch(e){
-                console.log(e)
-            }
-          };
-      
-          getPlanos();
-    }, [])
 
     useEffect(() => {
         if (informacoes) {
@@ -74,19 +60,8 @@ export default function edit({isOpen, setCloseEdit, informacoes}){
             setValue('telefone', informacoes.telefone);
             setValue('email', informacoes.email);
             setValue('senha', informacoes.senha);
-
-            if (informacoes && informacoes.TipoPlano && informacoes.PacotePlano) {
-                const planoEncontrado = planos.find(plano => plano.tipo === informacoes.TipoPlano && plano.pacote === informacoes.PacotePlano);
-                if (planoEncontrado) {
-                    setSelectedValue(planoEncontrado.idplano);
-                }
-            }
         }
-    }, [informacoes, planos]);
-    
-    const handleSelectChange = (event) => {
-        setSelectedValue(event.target.value); // Atualiza o estado com o valor selecionado
-    };
+    }, [informacoes]);
 
     if(isOpen){
         return(
@@ -108,7 +83,6 @@ export default function edit({isOpen, setCloseEdit, informacoes}){
                             email: data.email,
                             telefone:data.telefone,
                             senha: data.senha,
-                            plano_idplano: selectedValue
                         })
                         localStorage.removeItem("clientesFormatados")
                         setCloseEdit()
@@ -145,18 +119,6 @@ export default function edit({isOpen, setCloseEdit, informacoes}){
                             <div className="sm:col-span-2">
                                 <label className="block text-sm font-medium leading-6 text-gray-900 mb-1">Senha</label>
                                 <input className="block w-full rounded-md border-0 py-1 pl-2 pr-2 text-gray-900 ring-1 ring-inset ring-gray-300 sm:text-sm sm:leading-6" type="password" required {...register("senha")}/>
-                            </div>
-                            <div className="sm:col-span-2">
-                                <label className="block text-sm font-medium leading-6 text-gray-900 mb-1">Plano</label>
-                                <select id='options' value={selectedValue} onChange={handleSelectChange} className="block w-full rounded-md border-0 py-2 pl-2 pr-2 text-gray-900 ring-1 ring-inset ring-white-300 sm:text-sm sm:leading-6">
-                                    {
-                                        planos.map((plano)=>{
-                                            return(
-                                                <option value={plano.idplano}>{plano.tipo}, {plano.pacote}, R$ {plano.valor}</option>
-                                            )
-                                        })
-                                    }
-                                </select>
                             </div>
                             <button className="flex w-full justify-center rounded-full bg-red-600 px-1 py-2 mt-4 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-red-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 sm:col-span-2 w-24 m-auto" type="submit">submit</button>
                         </div>
