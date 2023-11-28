@@ -22,6 +22,7 @@ class Informacoes {
         this.planosVencidos = await queryDB({
             query: `SELECT
             c.idcliente AS idCliente,
+            p.idpessoa AS idPessoa,
             p.nome,
             pl.tipo AS tipoPlano,
             pl.pacote AS pacotePlano,

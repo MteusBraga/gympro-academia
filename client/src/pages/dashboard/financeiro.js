@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useRouter } from "next/router";
+import ExcluirConta from "@/components/excluirConta"
+import Renovacao from "@/components/renovarMatricula"
 import Modalidade from "@/components/cadastroModalidade"
 import Plano from "@/components/cadastroPlano"
 import style from "@/styles/listausuarios.module.css";
@@ -9,9 +11,13 @@ import { destroyCookie, parseCookies } from "nookies"
 import { AuthContext } from "@/contexts/AuthContext";
 
 export default function Financeiro(){
-    const [openModal, setOpenModal] = useState(false)
+    const [openExcluir, setOpenExcluir] = useState(false)
+    const [openModalidade, setOpenModalidade] = useState(false)
+    const [openRev, setOpenRev] = useState(false)
     const [openPlano, setOpenPlano] = useState(false)
     const [dados, setDados] = useState([])
+    const [pessoaSelecionada, setPessoaSelecionada] = useState({})
+    const [objSelecionada, setObjSelecionada] = useState([])
 
     const { user, signOut} = useContext(AuthContext)
 
@@ -97,6 +103,10 @@ export default function Financeiro(){
                                     <td className={style.dadosNumber}>{dados.QuantidadeMulheres}</td>
                                 </tr>
                                 <tr className={style.linha}>
+                                    <th className={style.cabecalho}>Outros</th>
+                                    <td className={style.dadosNumber}>{dados.QuantidadeMulheres}</td>
+                                </tr>
+                                <tr className={style.linha}>
                                     <th className={style.cabecalho}>Total</th>
                                     <td className={style.dadosNumber}>{dados.QuantidadeTotalClientes}</td>
                                 </tr>
@@ -121,7 +131,7 @@ export default function Financeiro(){
                             </table>
                         </div>
                         <div className={financeiro.parteVencido}>
-                            <h2 className={financeiro.subtitulo}>Clientes com planos vencidos</h2>
+                            <h2 className={financeiro.subtitulo}>Clientes com o plano vencido</h2>
                             <div className={style.tabelaPlanoVencido}>
                                 <table>
                                     <thead>
@@ -151,8 +161,14 @@ export default function Financeiro(){
                                                 <td className={style.dadosNumber}>{formatarData(items.dataPagamento)}</td>
                                                 <td className={style.dadosNumber}>{items.diasVencimento}</td>
                                                 <td className={financeiro.dadosEdit}>
-                                                    <a><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rotate-ccw"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg></a>
-                                                    <a><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash-2"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg></a>
+                                                    <a onClick={() => {
+                                                        setObjSelecionada(items)
+                                                        setOpenRev(true)
+                                                    }}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rotate-ccw"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg></a>
+                                                    <a onClick={() => {
+                                                        setPessoaSelecionada(items.idPessoa)
+                                                        setOpenExcluir(true)
+                                                    }}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash-2"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg></a>
                                                 </td>
                                             </tr>
                                         )})}
@@ -163,7 +179,7 @@ export default function Financeiro(){
                     </div>
                     <div className={financeiro.tabelasInfo}>
                         <div className={financeiro.tabelaContainer}>
-                            <button className={financeiro.botaoCriar} onClick={()=> setOpenModal(true)}>
+                            <button className={financeiro.botaoCriar} onClick={()=> setOpenModalidade(true)}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
                             <p>CRIAR MODALIDADE</p>
                             </button>
@@ -211,9 +227,10 @@ export default function Financeiro(){
                             </div>
                         </div>
                     </div>
-                    <Modalidade isOpen={openModal} setCloseModal={() => setOpenModal(!openModal)}/>
-
+                    <ExcluirConta isOpen={openExcluir} setCloseModal={() => setOpenExcluir(!openExcluir)} idPessoa={pessoaSelecionada}/>
+                    <Modalidade isOpen={openModalidade} setCloseModal={() => setOpenModalidade(!openModalidade)}/>
                     <Plano isOpen={openPlano} setClosePlano={() => setOpenPlano(!openPlano)}/>
+                    <Renovacao isOpen={openRev} setCloseRev={() => setOpenRev(!openRev)} informacoes={objSelecionada}/>
                 </div>
             </div>
         </main>

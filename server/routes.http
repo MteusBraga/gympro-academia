@@ -137,3 +137,14 @@ Content-Type: application/json
 
 ###
 GET http://localhost:3333/planosVencidos
+
+###
+POST http://localhost:3333/renovarMatricula
+Content-Type: application/json
+
+{
+    "idPlano": "9",
+    "idCliente": "124",
+    "formaPagamento": "Boleto Bancário",
+    "dataPagamento": "2023-04-16"
+}

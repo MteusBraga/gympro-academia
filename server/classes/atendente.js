@@ -139,6 +139,37 @@ class Atendente extends Funcionario{
         }
         inserir()
     }
+
+    async renovarMatricula(matricula){     
+        const idPlano = matricula.idPlano
+        const idCliente = matricula.idCliente
+
+        async function inserir(){
+            await queryDB({
+                query: `
+                UPDATE cliente
+                SET plano_idplano = ?
+                WHERE idcliente = ?;
+                `,
+                values: [
+                    idPlano,
+                    idCliente
+                ]
+            })
+            queryDB({
+                query: `INSERT INTO pagamento (formaPagamento, dataPagamento, cliente_idcliente, plano_idplano)
+                VALUES (?, ?, ?, ?);
+                    `,
+                values: [
+                    matricula.formaPagamento,
+                    matricula.dataPagamento,
+                    idCliente,
+                    idPlano
+                ]
+            })
+        }
+        inserir()
+    }
 }
 
 

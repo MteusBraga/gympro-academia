@@ -35,7 +35,7 @@ export default function Home() {
                             <button className={style.conteudoPrincipalEscritoBotaoLog + ' hover:bg-[#CEF2F2] duration-300 hover:text-[#400500] hover:scale-110 '}>JÁ SOU MEMBRO</button>
                         </div>
                     </div>
-                    <Image data-aos="fade-left" data-aos-delay="200" className={style.conteudoPrincipalImagem} src="/imagem-principal.png" width={1050} height={500} alt="Imagem Principal" />
+                    <Image data-aos="fade-left" data-aos-delay="200" className={style.conteudoPrincipalImagem} src="/imagem-principal1.png" width={1050} height={500} alt="Imagem Principal" />
 
                 </section>
 

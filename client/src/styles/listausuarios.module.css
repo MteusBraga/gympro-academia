@@ -167,6 +167,20 @@
     max-width: 1000px;
 }
 
+.tabelaPlanoVencido table{
+    border-collapse: collapse;
+    position: relative;
+    display: block;
+}
+
+.tabelaPlanoVencido > table > thead > tr > th{
+    position: sticky;
+    top: 0;
+    border: 1px solid var(--preto);
+    background-color: var(--vermelho-claro);
+    color: var(--branco);
+}
+
 .tabelaAssociado{
     overflow: auto;
     height: 240px;
