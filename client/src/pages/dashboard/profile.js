@@ -133,6 +133,7 @@ export default function Profile(retorno) {
                                 retorno?.treino?.map((treino) => {
                                     return (
                                         <div className=" p-[10px]">
+                                            <p>Autor (Instrutor): {treino.autor}</p>
                                             <p>Descricao: {treino.descricao}</p>
                                             <p>Link: {treino.link}</p>
                                         </div>
