@@ -1,6 +1,5 @@
 const Atendente = require("./atendente");
 const queryDB = require('../dbconnetion');
-const { randomUUID } = require('crypto')
 const FacadeFinanceiro = require('./facadeFinanceiro')
 const PlanoBuilder = require(`./planoBuilder`)
 const MensalBuilder = require('./planoBuilder')
