@@ -3,6 +3,7 @@ const Funcionario = require('./classes/funcionario')
 const Atendente = require('./classes/atendente')
 const Gerente = require('./classes/gerente')
 const Usuario = require('./classes/usuario');
+const { randomUUID } = require('crypto')
 const Autenticacao = require('./classes/autenticacao')
 const express = require('express');
 const cors = require('cors');
@@ -24,7 +25,7 @@ app.use(cors());
 app.use(express.json()); 
 
 app.post('/cadastroClientes',async (req, res)=>{
-    console.log(req.body)
+    // console.log(req.body)
     atendente.createCliente(req.body)
 
     res.status(204).send()
@@ -32,7 +33,7 @@ app.post('/cadastroClientes',async (req, res)=>{
 
 app.post('/cadastroFuncionarios',async (req, res)=>{
     
-    console.log(req.body)
+    // console.log(req.body)
     gerente.createFuncionario(req.body)
 
     res.status(204).send()
@@ -66,18 +67,18 @@ app.post('/getLogin', async (req, res)=>{
     //TESTANDO CLIENTE
     // const cliente = new Cliente()
     // await cliente.setCliente(email, senha)
-    // console.log(cliente.getCliente())
+    console.log(cliente.getCliente())
     // res.send(cliente.getCliente())
 
     //TESTANDO FUNCIONARIO
     // const funcionario = new Funcionario()
     // await funcionario.setFuncionario(email, senha)
-    // console.log(funcionario.getFuncionario())
+    console.log(funcionario.getFuncionario())
     // res.send(funcionario.getFuncionario())
 
     //TESTANDO AUTENTICACAO
     const user = await autenticacao.fazerLogin(email, senha)
-    // console.log(user)
+    console.log(user)
     res.send(user)
 })
 
@@ -155,14 +156,14 @@ app.post('/apagarUsuario', async (req, res) => {
 })
 
 app.post('/editarCliente', async (req, res) => {
-    console.log(req.body)
+    // console.log(req.body)
     atendente.editarCliente(req.body)
 
     res.status(204).send()
 })
 
 app.post('/editarFuncionario', async (req, res) => {
-    console.log(req.body)
+    // console.log(req.body)
     gerente.editarFuncionario(req.body)
 
     res.status(204).send()
@@ -171,31 +172,56 @@ app.post('/editarFuncionario', async (req, res) => {
 app.post('/recuperarUsuario', async (req, res)=>{
     const { token } = req.body
     const user  = await autenticacao.recuperarUsuario(token)
-    console.log(user)
+    // console.log(user)
     res.send(user)
 })
 
 app.post('/criarPlanos', async(req,res)=>{
-    console.log(req.body)
+    // console.log(req.body)
     gerente.createPlano(req.body)
 
     res.status(204).send()
 })
 
 app.listen(3333, ()=>{
-    console.log('ligou menó')
+    // console.log('ligou menó')
 })
 
 app.post('/criarPlanos', async(req,res)=>{
-    console.log(req.body)
+    // console.log(req.body)
     gerente.createPlano(req.body)
 
     res.status(204).send()
 })
 
 app.post('/renovarMatricula', async(req,res)=>{
-    console.log(req.body)
+    // console.log(req.body)
     atendente.renovarMatricula(req.body)
 
     res.status(204).send()
+})
+
+app.post('/getTreinos', async(req, res)=>{
+    const id = req.body.token
+
+    const treinos = await queryDB({ 
+        query: 'select * from treino where cliente = ?', 
+        values: [id]
+    })
+    console.log(treinos)
+    res.send(treinos)
+})
+
+app.post('/mandaTreino', async (req,res)=>{
+    const instrutorId = req.body.instrutorId
+    const clienteId = req.body.clienteId
+    const link = req.body.link
+    const descricao = req.body.descricao
+    const idtreino = randomUUID()
+    queryDB({
+        query:"insert into treino (idtreino, link, autor, cliente, descricao) values (?,?,?,?,?);",
+        values: [idtreino, link,instrutorId, clienteId, descricao]
+    })
+
+    res.send()
 })
