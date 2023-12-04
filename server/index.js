@@ -220,7 +220,7 @@ app.post('/mandaTreino', async (req,res)=>{
     const idtreino = randomUUID()
     queryDB({
         query:"insert into treino (idtreino, link, autor, cliente, descricao) values (?,?,?,?,?);",
-        values: [idtreino, link,instrutorId, clienteId, descricao]
+        values: [idtreino, link, instrutorId, clienteId, descricao]
     })
 
     res.send()

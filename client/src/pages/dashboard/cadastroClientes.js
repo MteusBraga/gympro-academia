@@ -11,6 +11,7 @@ export default function CadastroClientes (){
     const router = useRouter()
     const [planos, setPlanos] = useState([])
     const [selectedValue, setSelectedValue] = useState('1')
+    const [selectedSexo, setSelectedSexo] = useState('m');
     const form = useForm()
     const { register, handleSubmit, setValue, getValues, reset } = useForm();
 
@@ -46,7 +47,7 @@ export default function CadastroClientes (){
                     console.log('valor selecionado '+ selectedValue)
                     await axios.post('http://localhost:3333/cadastroClientes', {
                         nome: data.nome,
-                        sexo: getValues("sexo"),
+                        sexo: selectedSexo,
                         nascimento: data.nascimento,
                         cpf: data.cpf,
                         telefone:data.telefone,
@@ -64,10 +65,17 @@ export default function CadastroClientes (){
                         </div>
                         <div>
                             <label className="block text-sm font-medium leading-6 text-gray-900 mb-1">Sexo</label>
-                            <input className="w-3.5 h-4" type="radio" value="m"required {...register("sexo")} checked/>
-                            <label for="default-radio-1" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-800">Homem</label>
-                            <input className="w-3.5 h-4 ml-2" type="radio" value="f" required {...register("sexo")}/>
-                            <label for="default-radio-1" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-800">Mulher</label>
+                            <select
+                                className="block w-full rounded-md border-0 py-1 pl-2 pr-2 text-gray-900 ring-1 ring-inset ring-gray-300 sm:text-sm sm:leading-6"
+                                required
+                                {...register("sexo")}
+                                value={selectedSexo}
+                                onChange={(e) => setSelectedSexo(e.target.value)}
+                            >
+                                <option value="m">Homem</option>
+                                <option value="f">Mulher</option>
+                                <option value="o">Outros</option>
+                            </select>
                         </div>
                         <div>
                             <label className="block text-sm font-medium leading-6 text-gray-900 mb-1">Data de nascimento</label>

@@ -88,7 +88,7 @@ export default function Clientes(){
                                     {items.nome}
                                 </p>
                                 <p className={tabela.dados}>
-                                    {items.sexo}
+                                    {items.sexo.toUpperCase()}
                                 </p>
                                 <p className={tabela.dados}>
                                     {items.DataNascimento}

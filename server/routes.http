@@ -148,3 +148,6 @@ Content-Type: application/json
     "formaPagamento": "Boleto Bancário",
     "dataPagamento": "2023-04-16"
 }
+
+###
+GET http://localhost:3333/listaCliente 

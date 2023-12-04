@@ -75,49 +75,47 @@ export default function Profile(retorno) {
                 </div>
                 <div>
                     {user?.cargo ?
-                        <>  
+                        <div>  
                             <h1 className="font-bold text-xl">Dados Pessoais</h1>
-                            <p>Seu Id unico: {user?.idpessoa}</p>
+                            <p>ID: {user?.idpessoa}</p>
                             <p>Nome: {user?.nome}</p>
-                            <p>cpf: {user?.cpf}</p>
-                            <p>email: {user?.email}</p>
-                            <p>sexo: {user?.sexo}</p>
-                            <p>nascimento: {user?.nascimento}</p>
-                            <p>telefone: {user?.telefone}</p>
-                            <p>salario: {user?.salario}</p>
-                            <p>dataAdmissao: {user?.dataAdmissao}</p>
-                            <p>dataPagamento: {user?.dataPagamento}</p>
-                            <p>cargo: {user?.cargo}</p>
-                            <button className=" rounded-lg p-[10px] bg-red-500 text-white"> Editar Dados Pessoais</button>
+                            <p>CPF: {user?.cpf}</p>
+                            <p>Email: {user?.email}</p>
+                            <p>Sexo: {user?.sexo}</p>
+                            <p>Nascimento: {dataFormatada}</p>
+                            <p>Telefone: {telefoneFormatado}</p>
+                            <p>Salário: R$ {user?.salario}</p>
+                            <p>Data de Admissao: {user?.dataAdmissao}</p>
+                            <p>Data de Pagamento: {user?.dataPagamento}</p>
+                            <p>Cargo: {user?.cargo}</p>
+                            <button className=" rounded-lg p-[10px] bg-red-500 text-white">Editar Dados Pessoais</button>
                             {user?.cargo == 'atendente' ?
                                 <h1>
                                     <button className=" rounded-lg p-[10px] bg-red-500 text-white">CADASTRAR CLIENTES</button>
                                 </h1>
                                 :
-                                <>
+                                <div>
                                     {user?.cargo == 'instrutor' ?
-                                        <>
+                                        <div>
                                             <button className=" rounded-lg p-[10px] bg-red-500 text-white">ENVIAR TREINO</button>
-                                        </>
-                                        
+                                        </div>
                                         :
-                                        <>
+                                        <div>
                                             {user?.cargo == 'gerente' ?
-                                                <>
-                                                <button className=" rounded-lg p-[10px] bg-red-500 text-white"> FUNCIONARIOs</button>
-                                                <button className=" rounded-lg p-[10px] bg-red-500 text-white"> Clientes</button>
-                                                <button className=" rounded-lg p-[10px] bg-red-500 text-white"> Financeiro</button>
-                                                </>
+                                                <div>
+                                                <button className="rounded-lg p-[10px] bg-red-500 text-white"> Funcionários</button>
+                                                <button className="rounded-lg p-[10px] bg-red-500 text-white"> Clientes</button>
+                                                <button className="rounded-lg p-[10px] bg-red-500 text-white"> Financeiro</button>
+                                                </div>
                                                 :
-                                                <>
+                                                <div>
                                                 funcionario lascado
-                                                </>}
-                                        </>}
-                                </>}
-
-                        </>
+                                                </div>}
+                                        </div>}
+                                </div>}
+                        </div>
                         :
-                        <>
+                        <div>
                             <h1>Dados Pessoais cliente</h1>
                             <p>Nome: {user?.nome}</p>
                             <p>Sexo: {user?.sexo}</p>
@@ -140,7 +138,7 @@ export default function Profile(retorno) {
                                     )
                                 })
                             }
-                        </>
+                        </div>
                     }
 
                     {console.log(retorno.treino)}

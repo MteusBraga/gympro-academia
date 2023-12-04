@@ -37,6 +37,7 @@ const BOTAO_STYLE = {
 export default function edit({isOpen, setCloseEdit, informacoes}){
     const router = useRouter()
     const [selectedValue, setSelectedValue] = useState()
+    const [selectedSexo, setSelectedSexo] = useState(informacoes && informacoes.sexo === 'F' ? 'f' : (informacoes && informacoes.sexo === 'M' ? 'm' : 'o'));
     const form = useForm()
     const { register, handleSubmit, setValue, getValues, reset } = useForm();
     useEffect(() => {AOS.init();}, [])
@@ -54,11 +55,13 @@ export default function edit({isOpen, setCloseEdit, informacoes}){
            setValue('nome', informacoes.nome);
 
            if (informacoes.sexo === 'M') {
-               setValue('sexo', 'm');
-           } else if (informacoes.sexo === 'F') {
-               setValue('sexo', 'f');
-           }
-
+            setSelectedSexo('m');
+            } else if (informacoes.sexo === 'F') {
+                setSelectedSexo('f');
+            } else {
+                setSelectedSexo('o'); // Adicionado para lidar com "Outros"
+            }
+            
            if (informacoes.nascimento) {setValue('nascimento', informacoes.nascimento.split('T')[0]);}
            setValue('cpf', informacoes.cpf);
            setValue('telefone', informacoes.telefone);
@@ -81,7 +84,6 @@ export default function edit({isOpen, setCloseEdit, informacoes}){
                 <div style={MODAL_STYLE} className="mt-7 m-5 sm:mx-auto sm:w-full sm:max-w-lg bg-white p-5 rounded-lg">
                     <button data-aos="zoom-in" data-aos-delay="150" style={BOTAO_STYLE} onClick={() => {
                         setCloseEdit()
-                        console.log(informacoes)
                         }}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-circle"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>
                     </button>
@@ -112,10 +114,17 @@ export default function edit({isOpen, setCloseEdit, informacoes}){
                             </div>
                             <div>
                                 <label className="block text-sm font-medium leading-6 text-gray-900 mb-1">Sexo</label>
-                                <input className="w-3.5 h-4" type="radio" value="m"required {...register("sexo")}/>
-                                <label className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-800">Homem</label>
-                                <input className="w-3.5 h-4 ml-2" type="radio" value="f" required {...register("sexo")}/>
-                                <label className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-800">Mulher</label>
+                                <select
+                                    className="block w-full rounded-md border-0 py-1 pl-2 pr-2 text-gray-900 ring-1 ring-inset ring-gray-300 sm:text-sm sm:leading-6"
+                                    required
+                                    {...register("sexo")}
+                                    value={selectedSexo}
+                                    onChange={(e) => setSelectedSexo(e.target.value)}
+                                >
+                                    <option value="m">Homem</option>
+                                    <option value="f">Mulher</option>
+                                    <option value="o">Outros</option>
+                                </select>
                             </div>
                             <div>
                                 <label className="block text-sm font-medium leading-6 text-gray-900 mb-1">Data de nascimento</label>
