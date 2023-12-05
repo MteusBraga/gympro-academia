@@ -90,7 +90,7 @@ export default function Profile(retorno) {
                             <h1>{user?.nome}</h1>
                         </div>
                        
-                        <button className={style.divsair} onClick={signOut}>
+                        <button className={style.divsair}>
                             <svg width="53" height="53" viewBox="0 0 53 53" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M19.875 46.375H11.0417C9.87029 46.375 8.7469 45.9097 7.91861 45.0814C7.09033 44.2531 6.625 43.1297 6.625 41.9583V11.0417C6.625 9.87029 7.09033 8.7469 7.91861 7.91861C8.7469 7.09033 9.87029 6.625 11.0417 6.625H19.875" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                 <path d="M35.3333 37.5416L46.3749 26.5L35.3333 15.4583" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -122,9 +122,10 @@ export default function Profile(retorno) {
                                         }}>Editar Dados Pessoais</button>
                             </div>
                             {user?.cargo == 'atendente' ?
-                                <h1>
-                                    <button className=" rounded-lg p-[10px] bg-red-500 text-white">Cadastrar Clientes</button>
-                                </h1>
+                                <div>
+                                    <button className="rounded-lg p-[10px] bg-red-500 text-white" onClick={() => router.push('/dashboard/financeiro')}> Financeiro</button>
+                                    <button className={`rounded-lg p-[10px] bg-red-500 text-white ${profile.botaoGerente}`} onClick={() => router.push('/dashboard/clientes')}> Clientes</button>
+                                </div>
                                 :
                                 <div>
                                     {user?.cargo == 'instrutor' ?
@@ -141,7 +142,7 @@ export default function Profile(retorno) {
                                                     <table>
                                                     <thead>
                                                         <tr className={profile.tabelaCabecalho}>
-                                                            <th className={profile.cabecalho}>Autor</th>
+                                                            <th className={profile.cabecalho}>Cliente</th>
                                                             <th className={profile.cabecalho}>Descrição</th>
                                                             <th className={profile.cabecalho}>Ação</th>
                                                         </tr>

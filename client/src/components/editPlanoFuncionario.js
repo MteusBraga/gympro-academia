@@ -54,9 +54,9 @@ export default function edit({isOpen, setCloseEdit, informacoes}){
            // Coloca as informações automaticamente nos inputs, tratei da data e do tipo do plano de maneira específica
            setValue('nome', informacoes.nome);
 
-           if (informacoes.sexo === 'M') {
+           if (informacoes.sexo === 'm') {
             setSelectedSexo('m');
-            } else if (informacoes.sexo === 'F') {
+            } else if (informacoes.sexo === 'f') {
                 setSelectedSexo('f');
             } else {
                 setSelectedSexo('o'); // Adicionado para lidar com "Outros"

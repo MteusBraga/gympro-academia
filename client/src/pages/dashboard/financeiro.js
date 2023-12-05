@@ -60,7 +60,7 @@ export default function Financeiro(){
                             ""
                             }
                         </div>
-                        <button className={style.divsair} onClick={signOut}>
+                        <button className={style.divsair}>
                             <svg width="53" height="53" viewBox="0 0 53 53" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M19.875 46.375H11.0417C9.87029 46.375 8.7469 45.9097 7.91861 45.0814C7.09033 44.2531 6.625 43.1297 6.625 41.9583V11.0417C6.625 9.87029 7.09033 8.7469 7.91861 7.91861C8.7469 7.09033 9.87029 6.625 11.0417 6.625H19.875" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M35.3333 37.5416L46.3749 26.5L35.3333 15.4583" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -71,25 +71,33 @@ export default function Financeiro(){
                     </div>
                 </div>
                 <div className={style.containerTable}>
-                    <h1 className={financeiro.titulo}>Financeiro</h1>
-                    <div className={financeiro.parteBlocos}>
-                        <div className={financeiro.blocoInd}>
-                            <h1> FATURAMENTO À VISTA </h1>
-                            <h2> R$ {dados.SomaValorVista} </h2>
-                        </div>
-                        <div className={financeiro.blocoInd}>
-                            <h1>FATURAMENTO PARCELADO  </h1>
-                            <h2> R$ {dados.SomaValorParcelado?.toFixed(2)} </h2>
-                        </div>
-                        <div className={financeiro.blocoInd}>
-                            <h1>FATURAMENTO LÍQUIDO </h1>
-                            <h2>R$ {dados.TotalLiquido}</h2>
-                        </div>
-                        <div className={financeiro.blocoInd}>
-                            <h1>TOTAL CLIENTES</h1>
-                            <h2> {dados.QuantidadeTotalClientes}</h2>
+                    {user?.cargo == "gerente" ?
+                    
+                    <div>
+                        <h1 className={financeiro.titulo}>Financeiro</h1>
+                        <div className={financeiro.parteBlocos}>
+                            <div className={financeiro.blocoInd}>
+                                <h1> FATURAMENTO À VISTA </h1>
+                                <h2> R$ {dados.SomaValorVista} </h2>
+                            </div>
+                            <div className={financeiro.blocoInd}>
+                                <h1>FATURAMENTO PARCELADO  </h1>
+                                <h2> R$ {dados.SomaValorParcelado?.toFixed(2)} </h2>
+                            </div>
+                            <div className={financeiro.blocoInd}>
+                                <h1>FATURAMENTO LÍQUIDO </h1>
+                                <h2>R$ {dados.TotalLiquido}</h2>
+                            </div>
+                            <div className={financeiro.blocoInd}>
+                                <h1>TOTAL CLIENTES</h1>
+                                <h2> {dados.QuantidadeTotalClientes}</h2>
+                            </div>
                         </div>
                     </div>
+                    :
+                    ""
+                    
+                    }
                     <h1 className={financeiro.titulo}>Informações</h1>
                     <div className={financeiro.tabelasFinanceiro}>
                         <table>
