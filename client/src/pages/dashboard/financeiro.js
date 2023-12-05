@@ -11,6 +11,7 @@ import { destroyCookie, parseCookies } from "nookies"
 import { AuthContext } from "@/contexts/AuthContext";
 
 export default function Financeiro(){
+    const { signOut } = useContext(AuthContext)
     const [openExcluir, setOpenExcluir] = useState(false)
     const [openModalidade, setOpenModalidade] = useState(false)
     const [openRev, setOpenRev] = useState(false)
@@ -19,7 +20,7 @@ export default function Financeiro(){
     const [pessoaSelecionada, setPessoaSelecionada] = useState({})
     const [objSelecionada, setObjSelecionada] = useState([])
 
-    const { user, signOut} = useContext(AuthContext)
+    const { user } = useContext(AuthContext)
 
     const router = useRouter()
 
@@ -39,7 +40,7 @@ export default function Financeiro(){
                 <div className={style.telaFixa}>
                     <div className={style.parteGerente}>
                         <div className={style.divUsuario}>
-                            <svg className={style.icon} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                            <svg className={style.icon} onClick={() => router.push('/dashboard/profile')} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                                 <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/>
                             </svg>
                             <h1>{user?.nome}</h1>
@@ -49,12 +50,17 @@ export default function Financeiro(){
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                                 <p>CLIENTES</p>
                             </button>
+                            {user?.cargo == "gerente" ?
+                            
                             <button onClick={() => router.push('/dashboard/funcionarios')}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-cog"><circle cx="18" cy="15" r="3"/><circle cx="9" cy="7" r="4"/><path d="M10 15H6a4 4 0 0 0-4 4v2"/><path d="m21.7 16.4-.9-.3"/><path d="m15.2 13.9-.9-.3"/><path d="m16.6 18.7.3-.9"/><path d="m19.1 12.2.3-.9"/><path d="m19.6 18.7-.4-1"/><path d="m16.8 12.3-.4-1"/><path d="m14.3 16.6 1-.4"/><path d="m20.7 13.8 1-.4"/></svg>
                                 <p>FUNCIONÁRIOS</p>
                             </button>
+                            :
+                            ""
+                            }
                         </div>
-                        <button className={style.divsair} onClick={() => router.push('/')}>
+                        <button className={style.divsair} onClick={signOut}>
                             <svg width="53" height="53" viewBox="0 0 53 53" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M19.875 46.375H11.0417C9.87029 46.375 8.7469 45.9097 7.91861 45.0814C7.09033 44.2531 6.625 43.1297 6.625 41.9583V11.0417C6.625 9.87029 7.09033 8.7469 7.91861 7.91861C8.7469 7.09033 9.87029 6.625 11.0417 6.625H19.875" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M35.3333 37.5416L46.3749 26.5L35.3333 15.4583" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -104,7 +110,7 @@ export default function Financeiro(){
                                 </tr>
                                 <tr className={style.linha}>
                                     <th className={style.cabecalho}>Outros</th>
-                                    <td className={style.dadosNumber}>{dados.QuantidadeMulheres}</td>
+                                    <td className={style.dadosNumber}>{dados.QuantidadeOutros}</td>
                                 </tr>
                                 <tr className={style.linha}>
                                     <th className={style.cabecalho}>Total</th>
@@ -177,6 +183,8 @@ export default function Financeiro(){
                             </div>
                         </div>
                     </div>
+                    {user?.cargo == "gerente" ? 
+                    
                     <div className={financeiro.tabelasInfo}>
                         <div className={financeiro.tabelaContainer}>
                             <button className={financeiro.botaoCriar} onClick={()=> setOpenModalidade(true)}>
@@ -227,6 +235,9 @@ export default function Financeiro(){
                             </div>
                         </div>
                     </div>
+                    :
+                    ""
+                    }
                     <ExcluirConta isOpen={openExcluir} setCloseModal={() => setOpenExcluir(!openExcluir)} idPessoa={pessoaSelecionada}/>
                     <Modalidade isOpen={openModalidade} setCloseModal={() => setOpenModalidade(!openModalidade)}/>
                     <Plano isOpen={openPlano} setClosePlano={() => setOpenPlano(!openPlano)}/>

@@ -93,7 +93,8 @@ class Informacoes {
         this.qtdClientesGenero = await queryDB({
             query: `SELECT
         SUM(CASE WHEN p.sexo = 'M' THEN 1 ELSE 0 END) AS QuantidadeHomens,
-        SUM(CASE WHEN p.sexo = 'F' THEN 1 ELSE 0 END) AS QuantidadeMulheres
+        SUM(CASE WHEN p.sexo = 'F' THEN 1 ELSE 0 END) AS QuantidadeMulheres,
+        SUM(CASE WHEN p.sexo = 'O' THEN 1 ELSE 0 END) AS QuantidadeOutros
         FROM cliente c
         JOIN pessoa p ON c.pessoa_idpessoa = p.idpessoa;    
         `

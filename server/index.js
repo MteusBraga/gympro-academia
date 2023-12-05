@@ -205,7 +205,28 @@ app.post('/getTreinos', async(req, res)=>{
     const id = req.body.token
 
     const treinos = await queryDB({ 
-        query: 'select * from treino where cliente = ?', 
+        query: `
+        SELECT treino.*, pessoa.nome AS nomeAutor
+        FROM treino
+        JOIN pessoa ON treino.autor = pessoa.idpessoa
+        WHERE treino.cliente = ?;
+        `, 
+        values: [id]
+    })
+    console.log(treinos)
+    res.send(treinos)
+})
+
+app.post('/getTreinosInstrutor', async(req, res)=>{
+    const id = req.body.token
+
+    const treinos = await queryDB({ 
+        query: `
+        SELECT treino.*, pessoa.nome AS nomeCliente
+        FROM treino
+        JOIN pessoa ON treino.cliente = pessoa.idpessoa
+        WHERE treino.autor = ?;
+        `, 
         values: [id]
     })
     console.log(treinos)
@@ -221,6 +242,50 @@ app.post('/mandaTreino', async (req,res)=>{
     queryDB({
         query:"insert into treino (idtreino, link, autor, cliente, descricao) values (?,?,?,?,?);",
         values: [idtreino, link, instrutorId, clienteId, descricao]
+    })
+
+    res.send()
+})
+
+app.post('/removeTreino', async (req,res)=>{
+    const resposta = req.body
+    await queryDB({
+        query:`DELETE FROM treino
+        WHERE idtreino = ?;
+        `,
+        values: [resposta.idTreino]
+    })
+
+    res.send()
+})
+
+
+app.post('/editInformacoes', async (req, res)=>{
+    const cliente = req.body
+    
+    await queryDB({
+        query: `UPDATE pessoa
+                SET
+                    nome = ?,
+                    sexo = ?,
+                    nascimento = ?,
+                    cpf = ?,
+                    email = ?,
+                    telefone = ?,
+                    senha = ? 
+                WHERE
+                    idpessoa = ?;
+            `,
+        values: [
+            cliente.nome, 
+            cliente.sexo, 
+            cliente.nascimento, 
+            cliente.cpf, 
+            cliente.email, 
+            cliente.telefone, 
+            cliente.senha,
+            cliente.idpessoa
+        ]
     })
 
     res.send()

@@ -36,14 +36,13 @@ export function AuthProvider({ children }){
             })
     
             setUser(data)
-            Router.push('/dashboard')
+            Router.push('/dashboard/profile')
         }
     }
 
     function signOut() {
         destroyCookie(null, 'gympro-token');
-        setUser(null);
-        Router.push('/login'); // Redireciona para a página inicial ou outra página desejada após o logout.
+        Router.push('/'); // Redireciona para a página inicial ou outra página desejada após o logout.
     }
 
     return (

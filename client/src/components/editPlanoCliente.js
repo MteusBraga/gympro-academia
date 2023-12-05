@@ -80,7 +80,7 @@ export default function edit({isOpen, setCloseEdit, informacoes}){
                         await axios.post('http://localhost:3333/editarCliente', {
                             idpessoa: informacoes.idPessoa,
                             nome: data.nome,
-                            sexo: getValues("sexo"),
+                            sexo: selectedValue,
                             nascimento: data.nascimento,
                             cpf: data.cpf,
                             email: data.email,

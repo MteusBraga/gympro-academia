@@ -28,7 +28,7 @@ const MODAL_STYLE = {
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'
 }
 
-export default function modal({isOpen, setCloseModal, idPessoa}){
+export default function modal({isOpen, setCloseModal, idTreino}){
     const router = useRouter()
     const form = useForm()
     const { register, handleSubmit, setValue, getValues, reset } = useForm();
@@ -38,13 +38,12 @@ export default function modal({isOpen, setCloseModal, idPessoa}){
         return(
             <div style={BACKGROUND_STYLE}>
                 <div data-aos="zoom-in" data-aos-delay="150" className="mt-10 sm:mx-auto sm:w-full sm:max-w-lg bg-white p-5 rounded-lg m-5" style={MODAL_STYLE}>
-                    <h2 data-aos="zoom-in" data-aos-delay="150" className="mt-5 mb-8 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Deseja EXCLUIR essa conta?</h2>
+                    <h2 data-aos="zoom-in" data-aos-delay="150" className="mt-5 mb-8 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Deseja EXCLUIR esse Treino?</h2>
                     <form data-aos="zoom-in" data-aos-delay="150" onSubmit={handleSubmit(async (data)=>{
-                        await axios.post('http://localhost:3333/apagarUsuario', {
-                            idPessoa:idPessoa
+                        await axios.post('http://localhost:3333/removeTreino', {
+                            idTreino: idTreino
                         })
-                        localStorage.removeItem("clientesFormatados")
-                        localStorage.removeItem("funcionarios")
+                        console.log(idTreino)
                         setCloseModal()
                         router.reload()
                     })}>

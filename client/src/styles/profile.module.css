@@ -1,0 +1,116 @@
+.telaFixa{
+    width: 370px;
+}
+
+@media screen and (max-width: 1400px){
+    .telaFixa{
+        width: 82px;
+    }
+}
+
+.tabelaTreinos{
+    overflow: auto;
+    max-height: 300px;
+    max-width: 500px;
+}
+
+.tabelaTreinos table{
+    border-collapse: collapse;
+    position: relative;
+    display: block;
+}
+
+.tabelaTreinos > table > thead > tr > th{
+    position: sticky;
+    top: 0;
+    border: 1px solid var(--preto);
+    background-color: var(--vermelho-claro);
+    color: var(--branco);
+}
+
+.tabelaCabecalho{
+    background-color: var(--branco);
+}
+
+.cabecalho{
+    text-align: left;
+    color: var(--preto);
+    padding: 7px 10px;
+    font-size: 18px;
+    border: 1px solid black;
+}
+
+.linha:nth-child(even){
+    background-color: rgb(238, 238, 238);
+}
+
+.linha:nth-child(odd){
+    background-color: var(--branco);
+}
+
+.dados{
+    padding: 5px 10px;
+    color: rgb(63, 63, 63);
+    border: 1px solid black;
+
+    max-width: 19em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.dados:hover{
+    overflow: visible;
+    white-space:inherit;
+}
+
+.dadosAcao{
+    padding: 5px 10px;
+    color: rgb(63, 63, 63);
+    border: 1px solid black;
+}
+
+.dadosAcao svg{
+    margin: auto;
+}
+
+.dadosAcao a{
+    cursor: pointer;
+}
+.dadosAcao a:active{
+    color: var(--vermelho-claro);
+}
+
+.containerGeral{
+    width: 100%;
+}
+
+.container{
+    margin: 30px 30px 30px 30px;
+}
+
+.informacoes h1{
+    font-weight: bold;
+    font-size: 28px;
+    font-family: Outfit;
+    margin-bottom: 5px;
+}
+
+.informacoes p{
+    padding: 2px;
+}
+
+.informacoes button{
+    margin: 10px 0px;
+}
+
+.titulo{
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 28px;
+    font-family: Outfit;
+}
+
+.botaoGerente{
+    margin: 0px 10px;
+}

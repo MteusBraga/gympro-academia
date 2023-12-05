@@ -151,3 +151,26 @@ Content-Type: application/json
 
 ###
 GET http://localhost:3333/listaCliente 
+
+###
+POST http://localhost:3333/editInformacoes
+Content-Type: application/json
+
+{
+    "nome": "Josimar Junior dos Santos",
+    "sexo": "m",
+    "nascimento": "2003-11-23",
+    "cpf": "11111111111",
+    "email": "josimarjunior.cg@gmail.com",
+    "telefone": "888888888",
+    "senha": "junior123",
+    "idpessoa": "10"
+}
+
+###
+POST http://localhost:3333/removeTreino
+Content-Type: application/json
+
+{
+    "idTreino": "2"
+}

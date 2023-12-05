@@ -53,6 +53,10 @@
     margin: 30px 10px 10px 10px;
 }
 
+.divUsuario svg{
+    cursor: pointer;
+}
+
 .divgerente{
     display: flex;
     align-items: start;
