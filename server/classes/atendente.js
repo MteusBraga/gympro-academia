@@ -2,10 +2,10 @@ const Funcionario = require('./funcionario')
 const queryDB = require('../dbconnetion')
 const { randomUUID } = require('crypto')
 const QueryDBAdapter = require('./queryDBAdapter')
+const { EditarClientes } = require('./command')
 
 class Atendente extends Funcionario{
-
-    queryDB = new QueryDBAdapter()
+    editClientes = new EditarClientes()
 
     async listarClientes(search){
         if(search){
@@ -49,9 +49,6 @@ class Atendente extends Funcionario{
         }
     }
 
-    editarCliente(){
-
-    }
 
     deleteCliente(){
 
@@ -109,35 +106,7 @@ class Atendente extends Funcionario{
     }
 
     async editarCliente(cliente){     
-        const idPessoa = cliente.idpessoa
-
-        async function inserir(){
-            await queryDB({
-                query: `UPDATE pessoa
-                        SET
-                            nome = ?,
-                            sexo = ?,
-                            nascimento = ?,
-                            cpf = ?,
-                            email = ?,
-                            telefone = ?,
-                            senha = ? 
-                        WHERE
-                            idpessoa = ?;
-                    `,
-                values: [
-                    cliente.nome, 
-                    cliente.sexo, 
-                    cliente.nascimento, 
-                    cliente.cpf, 
-                    cliente.email, 
-                    cliente.telefone, 
-                    cliente.senha,
-                    idPessoa
-                ]
-            })
-        }
-        inserir()
+        await this.editClientes.editar(cliente)
     }
 
     async renovarMatricula(matricula){     

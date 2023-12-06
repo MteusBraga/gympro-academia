@@ -28,12 +28,5 @@ export class ProxyCacheFuncionario {
             console.log('puxando do back')
             return data;
         }
-        // const cliente = new Cliente();
-        // const data = await cliente.trazerDados();
-        // // const cachedData = localStorage.getItem("funcionarios");
-        // localStorage.setItem("clientesFormatados", JSON.stringify(data));
-        // const cachedData = localStorage.getItem("clientesFormatados")
-        // console.log('cachedData',JSON.parse(cachedData))
-        // // console.log(data)
     }
 }

@@ -88,27 +88,8 @@ app.get('/financeiro', async (req, res)=>{
 
 
 app.get('/listaFuncionario', async (req, res)=>{
-    const lista_funcionario = await queryDB({
-        query:`SELECT
-        p.idpessoa AS idPessoa,
-        p.nome,
-        f.cargo,
-        f.salario,
-        p.sexo,
-        p.nascimento,
-        p.cpf,
-        p.email,
-        p.telefone,
-        f.dataAdmissao,
-        f.dataPagamento,
-        p.senha
-            FROM
-        funcionario f
-        JOIN pessoa p ON f.pessoa_idpessoa = p.idpessoa;
-        `
-    })
-
-    res.send(lista_funcionario)
+    const funcionarios = await gerente.listarFuncionarios()
+    res.send(funcionarios)
 })
 
 app.get('/listaCliente', async (req, res)=>{

@@ -6,25 +6,40 @@ const MensalBuilder = require('./planoBuilder')
 const TrimestralBuilder = require('./planoBuilder')
 const SemestralBuilder = require('./planoBuilder')
 const AnualBuilder = require('./planoBuilder')
-const {Cadastro} = require('./strategy')
-const {CadastroPlano} = require('./strategy')
-const {CadastroModalidade} = require('./strategy')
-const {CadastroFuncionarios} = require('./strategy')
+const { Cadastro } = require('./strategy')
+const { CadastroPlano } = require('./strategy')
+const { CadastroModalidade } = require('./strategy')
+const { CadastroFuncionarios } = require('./strategy');
+const { EditarFuncionarios } = require("./command");
 
-class Gerente extends Atendente{
+class Gerente extends Atendente {
+
+    editFuncionarios = new EditarFuncionarios()
     facadeFinanceiro = new FacadeFinanceiro()
+
+    async obterFinancas() {
+        await this.facadeFinanceiro.inicializarParametros()
+
+        const dados = await this.facadeFinanceiro.obterDados()
+        console.log(dados)
+
+        return dados
+    }
+
     planoBuilder = new PlanoBuilder()
+
+
     cadastroFuncionarios = new CadastroFuncionarios()
     cadastroPlano = new CadastroPlano()
     cadastroModalidade = new CadastroModalidade()
     cadastro = new Cadastro()
 
-    async createFuncionario(funcionario){
+    async createFuncionario(funcionario) {
         this.cadastro.setServico(this.cadastroFuncionarios)
         this.cadastro.cadastrar(funcionario)
     }
 
-    async createModalidade(modalidade){
+    async createModalidade(modalidade) {
         this.cadastro.setServico(this.cadastroModalidade)
         this.cadastro.cadastrar(modalidade)
     }
@@ -33,72 +48,40 @@ class Gerente extends Atendente{
         this.cadastro.setServico(this.cadastroPlano)
         this.cadastro.cadastrar(plano)
     }
-    
-    async construirPlano(plano){
+
+    async construirPlano(plano) {
         await this.builder.buildTipo(plano.tipo)
         await this.builder.buildPacote()
         await this.builder.buildValor(plano.valor, plano.desconto)
         await this.builder.buildModalidades(plano.modalidade)
     }
-    
 
-    async obterFinancas(){
-        await this.facadeFinanceiro.inicializarParametros()
 
-        const dados = await this.facadeFinanceiro.obterDados()
-        console.log(dados)
-        
-        return dados
+    async editarFuncionario(funcionario) {
+        this.editFuncionarios.editar(funcionario)
     }
-    
-    async editarFuncionario(funcionario){     
-        const idPessoa = funcionario.idpessoa
 
-        async function inserir(){
-            await queryDB({
-                query: `UPDATE pessoa
-                        SET
-                            nome = ?,
-                            sexo = ?,
-                            nascimento = ?,
-                            cpf = ?,
-                            email = ?,
-                            telefone = ?,
-                            senha = ?
-                        WHERE
-                            idpessoa = ?;
-                    `,
-                values: [
-                    funcionario.nome, 
-                    funcionario.sexo, 
-                    funcionario.nascimento, 
-                    funcionario.cpf, 
-                    funcionario.email, 
-                    funcionario.telefone, 
-                    funcionario.senha,
-                    idPessoa
-                ]
-            })
-            queryDB({
-                query: `UPDATE funcionario
-                        SET
-                            cargo = ?,
-                            salario = ?,
-                            dataAdmissao = ?,
-                            dataPagamento = ?
-                        WHERE
-                            pessoa_idpessoa = ?;
-                    `,
-                values: [
-                    funcionario.cargo,
-                    funcionario.salario,
-                    funcionario.dataAdmissao,
-                    funcionario.dataPagamento, 
-                    idPessoa 
-                ]
-            })
-        }
-        inserir()
+    async listarFuncionarios() {
+        const lista_funcionario = await queryDB({
+            query: `SELECT
+            p.idpessoa AS idPessoa,
+            p.nome,
+            f.cargo,
+            f.salario,
+            p.sexo,
+            p.nascimento,
+            p.cpf,
+            p.email,
+            p.telefone,
+            f.dataAdmissao,
+            f.dataPagamento,
+            p.senha
+                FROM
+            funcionario f
+            JOIN pessoa p ON f.pessoa_idpessoa = p.idpessoa;
+            `
+        })
+        return lista_funcionario
     }
 
 }
