@@ -13,6 +13,14 @@ const app = express();
 
 
 const dbconnetion = SingletonDatabaseConnection.getInstance()
+
+app.get('/modalidades', async (req, res)=>{
+    const result = dbconnetion.queryDB({
+        query:'select * from modalidade'
+    })
+
+    res.send(result)
+})
 const cliente = new Cliente()
 const funcionario = new Funcionario()
 const atendente = new Atendente()
@@ -55,13 +63,6 @@ app.get('/planos', async (req, res)=>{
     res.send(result)
 })
 
-app.get('/modalidades', async (req, res)=>{
-    const result = dbconnetion.queryDB({
-        query:'select * from modalidade'
-    })
-
-    res.send(result)
-})
 
 app.post('/getLogin', async (req, res)=>{
     const { email, senha } = req.body
