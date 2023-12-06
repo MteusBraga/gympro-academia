@@ -1,4 +1,4 @@
-const queryDB = require('../dbconnetion')
+const {queryDB} = require('../dbconnetion')
 
 class IEditarCommand{
     editar(pessoa){}

@@ -1,5 +1,5 @@
 const Funcionario = require('./funcionario')
-const queryDB = require('../dbconnetion')
+const {queryDB} = require('../dbconnetion')
 const { randomUUID } = require('crypto')
 const QueryDBAdapter = require('./queryDBAdapter')
 const { EditarClientes } = require('./command')
@@ -7,6 +7,10 @@ const { EditarClientes } = require('./command')
 class Atendente extends Funcionario{
     editClientes = new EditarClientes()
 
+
+    async editarCliente(cliente){     
+        await this.editClientes.editar(cliente)
+    }
     async listarClientes(search){
         if(search){
             const lista_funcionario = await this.queryDB.fazerQuery({
@@ -103,10 +107,6 @@ class Atendente extends Funcionario{
             })
         }
         inserir()
-    }
-
-    async editarCliente(cliente){     
-        await this.editClientes.editar(cliente)
     }
 
     async renovarMatricula(matricula){     

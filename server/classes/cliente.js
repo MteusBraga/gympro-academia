@@ -1,5 +1,5 @@
 const { randomUUID } = require('crypto')
-const queryDB = require('../dbconnetion')
+const {queryDB} = require('../dbconnetion')
 const Usuario = require('./usuario')
 
 class Cliente extends Usuario{

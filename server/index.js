@@ -7,10 +7,12 @@ const { randomUUID } = require('crypto')
 const Autenticacao = require('./classes/autenticacao')
 const express = require('express');
 const cors = require('cors');
-const queryDB = require('./dbconnetion');
+const {queryDB, SingletonDatabaseConnection} = require('./dbconnetion');
 const transactionDB = require('./transacao')
 const app = express();
 
+
+const dbconnetion = SingletonDatabaseConnection.getInstance()
 const cliente = new Cliente()
 const funcionario = new Funcionario()
 const atendente = new Atendente()
@@ -54,7 +56,7 @@ app.get('/planos', async (req, res)=>{
 })
 
 app.get('/modalidades', async (req, res)=>{
-    const result = await queryDB({
+    const result = dbconnetion.queryDB({
         query:'select * from modalidade'
     })
 

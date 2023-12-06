@@ -1,5 +1,5 @@
 const Atendente = require("./atendente");
-const queryDB = require('../dbconnetion');
+const {queryDB} = require('../dbconnetion');
 const FacadeFinanceiro = require('./facadeFinanceiro')
 const PlanoBuilder = require(`./planoBuilder`)
 const MensalBuilder = require('./planoBuilder')

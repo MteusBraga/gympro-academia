@@ -1,4 +1,4 @@
-const queryDB = require('../dbconnetion')
+const {queryDB} = require('../dbconnetion')
 const { randomUUID } = require('crypto')
 //Context
 class Cadastro{
